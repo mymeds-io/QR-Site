@@ -1,15 +1,17 @@
 .siteLink {
     padding: 0vh 1vw;
+    color: black;
+    font-weight: 600;
 }
 
 .siteLinks {
     position: relative;
-    left: 8vw;
+    left: 8.5vw;
 }
 
 @media screen and (max-width: 750px) {
     .siteLinks {
-        left: 4vw;
+        left: 5vw;
     }
 }
 

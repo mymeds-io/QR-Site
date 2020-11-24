@@ -3,6 +3,8 @@
 }
 
 .signInContainer {
-  background: blue;
+  background: white;
   height: 50vh;
+  border-radius: 10px;
+  border: black 1px solid;
 }
