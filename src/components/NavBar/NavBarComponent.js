@@ -17,7 +17,7 @@ export default function NavBarComponent() {
                     </div>
                 </div>
                 <div className="col-3" style={{display: "flex", justifyContent: "flex-end", position: "relative", right: "2vw"}}>
-                    <button type="button" className="btn btn-outline-primary btn-sm">Large button</button>
+                    <button type="button" className="btn btn-outline-primary btn-sm">Sign Up</button>
                 </div>
             </div>
         </div>

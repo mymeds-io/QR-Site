@@ -4,11 +4,15 @@
 
 .siteLinks {
     position: relative;
-    left: 7vw;
+    left: 8vw;
 }
 
 @media screen and (max-width: 650px) {
     .siteLinks {
         left: 4vw;
     }
+}
+
+.navBarComponent { 
+    height: 10vh;
 }
