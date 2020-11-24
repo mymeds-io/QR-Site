@@ -4,8 +4,8 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-        <div className="row no-gutters justify-content-between">
-            <div className="col-3">
+        <div className="row no-gutters justify-content-around" style={{position: "relative", left: "2vw"}}>
+            <div className="col-2">
               <img className="img-fluid" src={myMedsLogo} alt="myMedsLogo"/>
             </div>
             <div className="col-5">
@@ -16,7 +16,7 @@ function App() {
               </div>
             </div>
             <div className="col-3">
-              <button type="button" className="btn btn-outline-primary">Large button</button>
+              <button type="button" className="btn btn-outline-primary btn-sm">Large button</button>
             </div>
         </div>
     </div>
