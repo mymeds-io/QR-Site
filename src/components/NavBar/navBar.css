@@ -1,0 +1,27 @@
+.myMedsLogo {
+    width: 7vw;
+}
+
+@media screen and (max-width: 680px) {
+    .myMedsLogo {
+        width: 18vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .myMedsLogo {
+        width: 14vw;
+    }
+}
+
+
+@media screen and (min-width: 993px) {
+    .collapsedNavBar {
+        justify-content: space-between;
+    }
+
+    .navSignUp {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

@@ -1,24 +1,10 @@
-import myMedsLogo from './images/myMedsLogo.png'
 import './App.css';
+import NavBarComponent from './components/NavBar/NavBarComponent';
 
 function App() {
   return (
     <div className="App">
-        <div className="row no-gutters justify-content-around align-items-center" style={{position: "relative", left: "2vw"}}>
-            <div className="col-2">
-              <img className="img-fluid" src={myMedsLogo} alt="myMedsLogo"/>
-            </div>
-            <div className="col-5">
-              <div className="siteLinks">
-                <a href="#">Home</a>
-                <a href="#">Explore</a>
-                <a href="#">About Us</a>
-              </div>
-            </div>
-            <div className="col-3">
-              <button type="button" className="btn btn-outline-primary btn-sm">Large button</button>
-            </div>
-        </div>
+        <NavBarComponent />
     </div>
   );
 }
