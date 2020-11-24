@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-        <div className="row no-gutters justify-content-around" style={{position: "relative", left: "2vw"}}>
+        <div className="row no-gutters justify-content-around align-items-center" style={{position: "relative", left: "2vw"}}>
             <div className="col-2">
               <img className="img-fluid" src={myMedsLogo} alt="myMedsLogo"/>
             </div>
