@@ -11,6 +11,8 @@
 
 .signInSubmit {
     width: 100%;
+    background: #512cc3;
+    border-color: #512cc3;
 }
 
 .signInHeader {
@@ -21,4 +23,13 @@
 
 .signInSubHeader {
     font-size: .9rem;
+}
+
+.userInputs {
+    position: relative;
+    bottom: 3vh;
+}
+
+.signInLink {
+    font-weight: 600;
 }
