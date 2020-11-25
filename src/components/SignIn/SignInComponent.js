@@ -12,8 +12,6 @@ export default function SignInComponent() {
                                 <h5 className="col-12" style={{textAlign: "center"}}>
                                     All about your meds...
                                 </h5>
-                            </div>
-                            <div className="row no-gutters" style={{width: "100%"}}>
                                 <h6 className="col-12" style={{textAlign: "center"}}>
                                     Sign in to your account
                                 </h6>
@@ -22,13 +20,11 @@ export default function SignInComponent() {
                                 <div className="col-12">
                                     <form>
                                         <div className="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
                                         </div>
                                         <div className="form-group">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" className="form-control" id="exampleInputPassword1"/>
+                                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                         </div>
                                         <div className="row">
                                             <div className="col-12">
@@ -39,8 +35,10 @@ export default function SignInComponent() {
                                 </div>
                             </div>
                             <div className="row no-gutters" style={{width: "100%"}}>
-                                <div className="col-6">
-
+                                <div className="col-12">
+                                    <p style={{textAlign: "center"}}>
+                                        New to myMeds? <a href="#">Sign Up.</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
