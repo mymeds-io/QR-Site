@@ -1,14 +1,23 @@
+import React, {Component} from 'react';
 import './App.css';
-import NavBarComponent from './components/NavBar/NavBarComponent';
-import SignInComponent from './components/SignIn/SignInComponent';
+import {Route, Switch} from 'react-router-dom';
+import HomeComponent from './components/Home/HomeComponent';
+import SignUpComponent from './components/SignUp/SignUpComponent';
 
-function App() {
-  return (
-    <div className="App">
-        <NavBarComponent />
-        <SignInComponent />
-    </div>
-  );
+
+class App extends Component {
+
+  render() {
+
+    return (
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={HomeComponent} />
+          <Route exact path="/sign-up" component={SignUpComponent} />
+        </Switch>
+      </div>
+    )
+  }
 }
 
 export default App;
