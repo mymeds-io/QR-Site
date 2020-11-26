@@ -14,53 +14,38 @@ export default function SignUpComponent() {
                 </div>
             </span>
             <span className="rightMyMedsSection">
+                <div className="row justify-content-center" style={{width: "100%"}}>
+                    <div className="col-9" style={{paddingLeft: "8vw", position: "relative", bottom: "5vh"}}>
+                        <h4>Sign up for myMeds</h4>
+                    </div>
+                </div>
                 <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
-                    <div className="col-7" style={{position: "relative", right: "1vw"}}>
+                    <div className="col-5" style={{position: "relative", right: "1vw"}}>
                         <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4"/>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                <input type="email" className="form-control" id="inputEmail4" placeholder="First Name" />
                                 </div>
-                                <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4"/>
+                                <div className="form-group col-md-6">
+                                <input type="password" className="form-control" id="inputPassword4" placeholder="Last Name" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
+                            <div className="form-group">
+                                <input type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
                             </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
+                            <div className="form-group">
+                                <input type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity"/>
-                                </div>
-                                <div class="form-group col-md-4">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip"/>
+                            <div className="form-row">
+                                <div className="form-group col-md-12">
+                                <input type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck"/>
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
+                            <div className="row no-gutters" style={{width: "100%", position: "relative", top: "10vh"}}>
+                                <div className="col-12">
+                                    <button type="submit" className="signUpBtn btn btn-primary" >Sign in</button>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
                         </form>
                     </div>
                 </div>
