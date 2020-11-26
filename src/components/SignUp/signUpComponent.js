@@ -16,7 +16,7 @@ export default function SignUpComponent() {
             <span className="rightMyMedsSection">
                 <div className="row justify-content-center" style={{width: "100%"}}>
                     <div className="col-9" style={{paddingLeft: "8vw", position: "relative", bottom: "5vh"}}>
-                        <h4>Sign up for myMeds</h4>
+                        <h4 style={{fontWeight: "700"}}>Sign up for myMeds</h4>
                     </div>
                 </div>
                 <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
@@ -43,7 +43,10 @@ export default function SignUpComponent() {
                             </div>
                             <div className="row no-gutters" style={{width: "100%", position: "relative", top: "10vh"}}>
                                 <div className="col-12">
-                                    <button type="submit" className="signUpBtn btn btn-primary" >Sign in</button>
+                                    <button type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                </div>
+                                <div className="col-12" style={{textAlign: "center", position: "relative", top: "2vh"}}>
+                                    <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
                                 </div>
                             </div>
                         </form>

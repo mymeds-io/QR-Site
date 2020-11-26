@@ -23,4 +23,6 @@
 
 .signUpBtn {
     width: 100%;
+    background: #512cc3;
+    border-color: #512cc3;
 }
