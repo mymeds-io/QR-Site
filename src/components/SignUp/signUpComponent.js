@@ -1,6 +1,7 @@
 import React from 'react';
 import './signUp.css';
 import myMedsLogo from '../../images/myMedsLogo.png';
+import NavBarComponent from '../NavBar/NavBarComponent';
 
 
 export default function SignUpComponent() {
@@ -15,8 +16,8 @@ export default function SignUpComponent() {
                     </div>
                 </span>
                 <span className="rightMyMedsSection">
-                    <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
-                        <div className="col-9" style={{position: "relative", bottom: "5vh", right: "1vw", textAlign: "center"}}>
+                    <div className="row no-gutters justify-content-center" style={{width: "100%", position: "relative", bottom: "5vh"}}>
+                        <div className="col-9" style={{position: "relative", right: "1vw", textAlign: "center"}}>
                             <h4 style={{fontWeight: "700"}}>Sign Up</h4>
                         </div>
                     </div>
@@ -56,7 +57,7 @@ export default function SignUpComponent() {
                 </span>
             </div>
             <div className="d-block d-sm-block d-md-none d-lg-none signUpComponentMobile">
-
+                <NavBarComponent />
             </div>
         </div>
     )
