@@ -14,9 +14,9 @@ export default function SignUpComponent() {
                 </div>
             </span>
             <span className="rightMyMedsSection">
-                <div className="row justify-content-center" style={{width: "100%"}}>
-                    <div className="col-9" style={{paddingLeft: "8vw", position: "relative", bottom: "5vh"}}>
-                        <h4 style={{fontWeight: "700"}}>Sign up for myMeds</h4>
+                <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
+                    <div className="col-9" style={{position: "relative", bottom: "5vh", right: "1vw", textAlign: "center"}}>
+                        <h4 style={{fontWeight: "700"}}>Sign Up</h4>
                     </div>
                 </div>
                 <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
