@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './signIn.css';
 
 export default function SignInComponent() {
@@ -39,7 +40,7 @@ export default function SignInComponent() {
                             <div className="row no-gutters" style={{width: "100%"}}>
                                 <div className="col-12">
                                     <p style={{textAlign: "center"}}>
-                                        New to myMeds? <a className="signInLink" href="#">Sign Up.</a>
+                                        New to myMeds? <Link style={{fontWeight: "600"}} to={'/sign-up'}>Sign Up</Link>
                                     </p>
                                 </div>
                             </div>

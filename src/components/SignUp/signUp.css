@@ -1,0 +1,28 @@
+.signUpComponent {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.leftMyMedsSection {
+    height: 100vh;
+    width: 33vw;
+    background: #512cc3;
+    display: flex;
+    align-items: center;
+}
+
+.rightMyMedsSection {
+    height: 100vh;
+    width: 67vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpBtn {
+    width: 100%;
+    background: #512cc3;
+    border-color: #512cc3;
+}
