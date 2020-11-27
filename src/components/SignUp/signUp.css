@@ -1,4 +1,4 @@
-.signUpComponent {
+.signUpComponentDesktop {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -19,10 +19,42 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .signUpBtn {
     width: 100%;
     background: #512cc3;
     border-color: #512cc3;
+}
+
+.signInBtnDesktop {
+    position: absolute;
+    top: 4vh;
+    right: 3vw;
+}
+
+/*Sign Up Mobile*/
+
+.signUpContentMobile {
+    height: 90vh;
+}
+
+.signUpTitleRowMobile {
+    justify-content: center;
+    margin-bottom: 5vh;
+    position: relative;
+    top: 2vh;
+}
+
+.signUpContainerMobile {
+    background: white;
+    height: 65vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+}
+
+.signUpInputsMobile {
+    position: relative;
+    top: 5vh;
 }
