@@ -1,8 +1,21 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import './navBar.css';
 
 export default function NavBarComponent() {
+
+    let urlName = window.location.pathname;
+    const history = useHistory();
+
+    const returnToSignIn = () => {
+        history.push("/");
+    }
+
+    const returnToSignUp = () => {
+        history.push("sign-up");
+    }
+    
     return (
         <div className="navBarComponent">
             <div className="row no-gutters justify-content-between align-items-center" style={{padding: "1vh 0vw"}}>
@@ -17,7 +30,11 @@ export default function NavBarComponent() {
                     </div>
                 </div>
                 <div className="col-3" style={{display: "flex", justifyContent: "flex-end", position: "relative", right: "2vw"}}>
-                    <button type="button" className="btn btn-outline-primary btn-sm">Sign Up</button>
+                    {urlName === "/sign-up" ? 
+                        <button type="button" onClick={() => returnToSignIn()} className="btn btn-outline-primary btn-sm">Sign In</button>
+                        :
+                        <button type="button" onClick={() => returnToSignUp()} className="btn btn-outline-primary btn-sm">Sign Up</button>
+                    }
                 </div>
             </div>
         </div>

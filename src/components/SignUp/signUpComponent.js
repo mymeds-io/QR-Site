@@ -2,9 +2,17 @@ import React from 'react';
 import './signUp.css';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import NavBarComponent from '../NavBar/NavBarComponent';
+import { useHistory } from 'react-router-dom';
 
 
 export default function SignUpComponent() {
+
+    const history = useHistory();
+
+    const returnToSignIn = () => {
+        history.push("/");
+    }
+
     return (
         <div className="signUpContent">
             <div className="d-none d-sm-none d-md-flex signUpComponentDesktop">
@@ -16,6 +24,7 @@ export default function SignUpComponent() {
                     </div>
                 </span>
                 <span className="rightMyMedsSection">
+                    <button type="button" onClick={() => returnToSignIn()} className="btn btn-outline-primary signInBtnDesktop">Sign In</button>
                     <div className="row no-gutters justify-content-center" style={{width: "100%", position: "relative", bottom: "5vh"}}>
                         <div className="col-9" style={{position: "relative", right: "1vw", textAlign: "center"}}>
                             <h4 style={{fontWeight: "700"}}>Sign Up</h4>
@@ -59,7 +68,12 @@ export default function SignUpComponent() {
             <div className="d-block d-sm-block d-md-none d-lg-none signUpComponentMobile">
                 <NavBarComponent />
                 <div className="signUpContentMobile">
-                    <div className="row no-gutters align-items-center justify-content-center" style={{transform: "translateY(20%)"}}>
+                    <div className="row no-gutters signUpTitleRowMobile" style={{width: "100%"}}>
+                        <div className="col-6" style={{textAlign: "center"}}>
+                            <h4>Sign Up</h4>
+                        </div>
+                    </div>
+                    <div className="row no-gutters align-items-center justify-content-center">
                         <div className="col-8">
                             <div className="signUpContainerMobile">
                                 <form>

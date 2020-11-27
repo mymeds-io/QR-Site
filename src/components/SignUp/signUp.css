@@ -19,6 +19,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .signUpBtn {
@@ -27,10 +28,23 @@
     border-color: #512cc3;
 }
 
+.signInBtnDesktop {
+    position: absolute;
+    top: 4vh;
+    right: 3vw;
+}
+
 /*Sign Up Mobile*/
 
 .signUpContentMobile {
     height: 90vh;
+}
+
+.signUpTitleRowMobile {
+    justify-content: center;
+    margin-bottom: 5vh;
+    position: relative;
+    top: 2vh;
 }
 
 .signUpContainerMobile {
