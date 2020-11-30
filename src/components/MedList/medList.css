@@ -1,3 +1,7 @@
+.medListContent {
+    height: 90vh;
+}
+
 .medListContainer {
     background: white;
     height: 65vh;
