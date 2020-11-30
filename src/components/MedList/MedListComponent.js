@@ -72,7 +72,7 @@ export default function MedListComponent() {
                                 </div>
                                 <div className="col-5">
                                     <div className="medHx medHistoryContainer2">
-                                        <div className="medHxOverlay"></div>
+                                        <div className="medHxOverlay2"></div>
                                         <span>History</span>
                                     </div>
                                 </div>
