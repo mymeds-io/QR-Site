@@ -2,7 +2,7 @@ import React from 'react';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import SignInComponent from '../SignIn/SignInComponent';
 
-export default function HomeComponent() {
+function HomeComponent() {
     return (
         <div className="homeComponent">
             <NavBarComponent />
@@ -10,3 +10,5 @@ export default function HomeComponent() {
         </div>
     )
 }
+
+export default HomeComponent;

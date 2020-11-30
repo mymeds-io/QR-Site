@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import useFetchMeds from '../../functions/useFetchMeds';
 import './signIn.css';
 
+//Just remove onClick prop from submit button and delete code above return statement to obtain previous code
+
 export default function SignInComponent() {
+
+    const [userId, setUserId] = useState("1");
+    const {meds, loading, error} = useFetchMeds(userId);
+
+    function handleSubmit() {
+        setUserId("1")
+    }
+
+    useEffect(() => {
+        console.log("State userId is: ", userId);
+        console.log("Successfully fetched meds!: ", meds);
+    })
+
     return (
+        
         <div className="signInContent">
             <div className="row no-gutters align-items-center justify-content-center" style={{transform: "translateY(25%)"}}>
                 <div className="col-8 col-md-4 col-lg-3">
@@ -31,7 +48,7 @@ export default function SignInComponent() {
                                         </div>
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
-                                                <button type="submit" className="signInSubmit btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={() => handleSubmit()} className="signInSubmit btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
