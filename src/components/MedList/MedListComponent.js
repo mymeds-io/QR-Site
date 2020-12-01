@@ -16,7 +16,15 @@ export default function MedListComponent() {
     const renderMeds = () => {
         if(meds && meds.data && meds.data.meds){
             return meds.data.meds.map((med) => {
-                return <li>{med}</li>
+                return (
+                <div className="row no-gutters medsRow justify-content-center">
+                    <div className="col-2">
+
+                    </div>
+                    <div className="col-8" style={{display: "flex", justifyContent: "center"}}>
+                        <div>{med}</div>
+                    </div>
+                </div>)
             })
         }
     }
@@ -77,9 +85,9 @@ export default function MedListComponent() {
                                     </div>
                                 </div>
                             </div>
-                            <ul>
-                                {renderMeds()}
-                            </ul>
+                            <div className="row no-gutters medsRow justify-content-center">
+                                {renderMeds()}                                
+                            </div>
                         </div>
                     </div>
                 </div>
