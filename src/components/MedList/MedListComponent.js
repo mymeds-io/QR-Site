@@ -5,24 +5,37 @@ import './medList.css';
 
 export default function MedListComponent() {
 
-    const {meds, loading, error} = useFetchMeds("1");
+    const {meds, age, name, loading, error} = useFetchMeds("1");
 
     useEffect(() => {
-        if(meds && meds.data && meds.data.meds){
-            console.log("Here are the user's meds: ", meds.data.meds[0]);
+        if(meds && meds.length > 0){
+            console.log("Here are the user's meds: ", meds);
         }
     })
 
     const renderMeds = () => {
-        if(meds && meds.data && meds.data.meds){
-            return meds.data.meds.map((med) => {
+        if(meds){
+            return meds.map((med) => {
                 return (
-                <div className="row no-gutters medsRow justify-content-center">
-                    <div className="col-2">
-
+                <div className="row no-gutters medsRow justify-content-center mt-3">
+                    <div className="col-2" style={{position:"relative", right:"1vw"}}>
+                        <img className="img-fluid" src={med.image} alt="medPic"/>
                     </div>
-                    <div className="col-8" style={{display: "flex", justifyContent: "center"}}>
-                        <div>{med}</div>
+                    <div className="col-8" style={{position:"relative", left:"1vw", top:"1vh"}}>
+                        <div className="row no-gutters">
+                            <div className="col-12">
+                                <div className="medName">{med.medName}</div>
+                            </div>
+                            <div className="col-12">
+                                <div className="medDirections">{med.directions}</div>
+                            </div>
+                            <div className="col-5" style={{display:"flex", justifyContent:"center"}}>
+                                <div className="medRefill" style={{position:"relative", right:"1vw"}}><i className="fa fa-share" style={{fontWeight:"700"}} aria-hidden="true">{med.refill}</i></div>
+                            </div>
+                            <div className="col-5" style={{display:"flex", justifyContent:"center"}}>
+                                <div className="medExp" style={{position:"relative", right:"3vw"}}><i class="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{med.exp}</i></div>
+                            </div>
+                        </div>
                     </div>
                 </div>)
             })
@@ -30,14 +43,14 @@ export default function MedListComponent() {
     }
 
     const renderName = () => {
-        if(meds && meds.data && meds.data.name){
-            return <h5>{meds.data.name}</h5>
+        if(name){
+            return <h5>{name}</h5>
         }
     }
 
     const renderAge = () => {
-        if(meds && meds.data && meds.data.age){
-            return <h6>{meds.data.age + " Years Old"}</h6>
+        if(age){
+            return <h6>{age + " Years Old"}</h6>
         }
     }
 
@@ -75,7 +88,7 @@ export default function MedListComponent() {
                                 <div className="col-5">
                                     <div className="medHx medHistoryContainer active">
                                         <div className="medHxOverlay"></div>
-                                        <span>Medicine Tracking List</span>
+                                        <span style={{textAlign:"center", fontSize:".9rem"}}>Medicine Tracking List</span>
                                     </div>
                                 </div>
                                 <div className="col-5">
@@ -85,9 +98,7 @@ export default function MedListComponent() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row no-gutters medsRow justify-content-center">
                                 {renderMeds()}                                
-                            </div>
                         </div>
                     </div>
                 </div>

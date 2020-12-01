@@ -60,3 +60,23 @@
     opacity:0.2;
     border-radius: 0px 7px 7px 0px;
 }
+
+.medName {
+    font-weight: 700;
+}
+
+.medDirections {
+    color: #9e9292;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.medRefill {
+    color: blueviolet;
+    font-weight: 700;
+}
+
+.medExp {
+    color: rgb(240, 51, 26);
+    font-weight: 700;
+}
