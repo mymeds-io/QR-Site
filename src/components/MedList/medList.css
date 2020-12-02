@@ -31,6 +31,8 @@
 .userMedContainer {
     height: 47vh;
     overflow: auto;
+    position: relative;
+    right: 4%;
 }
 
 .userImg {
