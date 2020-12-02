@@ -1,6 +1,126 @@
+.medListContent {
+    height: 90vh;
+}
+
+
+.medListContainerContent {
+    position: relative;
+    top: 4vh;
+}
+
 .medListContainer {
+    position: relative;
     background: white;
-    height: 65vh;
+    height: 69vh;
     border-radius: 10px;
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+}
+
+.medHistoryContainer {
+    height: 6vh;
+    border-radius: 7px 0px 0px 7px;
+    border: solid 2px rgb(149 136 160 / .4);
+}
+
+.medHistoryContainer2 {
+    height: 6vh;
+    border-radius: 0px 7px 7px 0px;
+    border: solid 2px rgb(149 136 160 / .4);
+}
+
+.userMedContainer {
+    height: 47vh;
+    overflow: auto;
+    position: relative;
+    right: 4%;
+}
+
+.userImg {
+    position: absolute;
+    top: -10%;
+    left: 8%;
+    height: 14%;
+    width: 18%;
+    border-radius: 45px;
+}
+
+@media screen and (min-width: 1120px){
+    .userImg {
+        position: absolute;
+        top: -10%;
+        left: 6%;
+        height: 16%;
+        width: 17%;
+        border-radius: 45px;
+    }
+}
+
+.userName {
+    font-weight: 700;
+    color: #4d4545;
+}
+
+.userAge {
+    color: #786d6db3;
+    font-size: 0.9rem;
+}
+
+.medHx {
+    color: blueviolet;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.medHx span {
+    position: relative;
+    bottom: 0.5vh;
+}
+
+.active {
+    background: blueviolet;
+    color: white;
+}
+
+.medHx:hover {
+    cursor: pointer;
+}
+
+.medHistoryContainer:hover > .medHxOverlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:#000;
+    opacity:0.2;
+    border-radius: 7px 0px 0px 7px;
+}
+
+.medHistoryContainer2:hover > .medHxOverlay2 {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:#000;
+    opacity:0.2;
+    border-radius: 0px 7px 7px 0px;
+}
+
+.medName {
+    font-weight: 700;
+}
+
+.medDirections {
+    color: #9e9292;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.medRefill {
+    color: blueviolet;
+    font-weight: 700;
+}
+
+.medExp {
+    color: rgb(240, 51, 26);
+    font-weight: 700;
 }

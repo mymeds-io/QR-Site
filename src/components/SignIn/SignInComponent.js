@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useFetchMeds from '../../functions/useFetchMeds';
 import './signIn.css';
 
@@ -9,9 +9,10 @@ export default function SignInComponent() {
 
     const [userId, setUserId] = useState("1");
     const {meds, loading, error} = useFetchMeds(userId);
-
-    function handleSubmit() {
-        setUserId("1")
+    const history = useHistory();
+    
+    const handleSubmit = () => {
+        history.push("/user-meds")
     }
 
     useEffect(() => {
