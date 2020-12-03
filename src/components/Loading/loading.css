@@ -1,0 +1,44 @@
+.loadingCupRow {
+  position: absolute;
+  top: 25%;
+  z-index: 1;
+}
+
+#cup {
+    width: 56%;
+    height: 47vh;
+    border: 10px solid #0d161f;
+    position: relative;
+    top: 52%;
+    left: 49%;
+    transform: translate(-49%,-50%);
+    border-radius: 0px 0px 50px 50px;
+    box-shadow: 0px 0px 0px 8px #512cc3, inset 20px -20px 20px rgba(255,255,255,0.5), inset -10px -20px 20px rgba(255,255,255,0.5);
+    background-image: url(https://my-meds.s3.amazonaws.com/wave.png);
+    background-position: 0px 275px;
+    background-repeat: repeat-x;
+    animation: filling 20s ease-in-out infinite;
+  }
+  
+  #cup::after {
+    content: "";
+    width: 34%;
+    height: 45%;
+    position: absolute;
+    left: 105%;
+    top: 16%;
+    border: 8px solid #512cc3;
+    border-right-width: 16px;
+    border-radius: 0px 20px 50px 0px;
+  }
+
+  .loadingText {
+    margin-top: 6vh;
+    padding-left: 2vw;
+    text-align: center;
+  }
+  
+  @keyframes filling {
+    50% {background-position: 3000px 0px;}
+    100% {background-position: 6000px 350px;}
+  }

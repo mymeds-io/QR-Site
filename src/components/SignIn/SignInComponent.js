@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import useFetchMeds from '../../functions/useFetchMeds';
+import LoadingComponent from '../Loading/LoadingComponent';
 import './signIn.css';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
@@ -21,6 +22,10 @@ export default function SignInComponent() {
     })
 
     return (
+        
+        ( !loading ? <LoadingComponent /> 
+            
+        :
         
         <div className="signInContent">
             <div className="row no-gutters align-items-center justify-content-center" style={{transform: "translateY(25%)"}}>
@@ -66,7 +71,7 @@ export default function SignInComponent() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>)
     )
 }
 
