@@ -23,7 +23,7 @@ export default function SignInComponent() {
 
     return (
         
-        ( !loading ? <LoadingComponent /> 
+        ( loading ? <LoadingComponent /> 
             
         :
         
