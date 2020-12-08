@@ -25,19 +25,23 @@ function reducer(state, action) {
 export default function useFetchMeds(userId) {
     const [ state, dispatch ] = useReducer(reducer, { meds: [], loading: true, name: "", age: "" })
 
+    //setTimeout added to simulate data fetching time
+    
     useEffect(() => {
-        console.log("Now fetching user's med list");
-
-        dispatch({ type: ACTIONS.MAKE_REQUEST })
-        axios.get(BASE_URL + `${userId}`)
-        .then(res => {
-            console.log("Response from Greg's server: ", res)
-            dispatch({ type: ACTIONS.GET_DATA, payload: res.data.data })
-        })
-        .catch(e => {
-            console.log("An error occurred while fetching user's medications: ", e)
-            dispatch({ type: ACTIONS.ERROR, payload: { error: e }})
-        })
+        setTimeout( async () => {
+            console.log("Now fetching user's med list");
+    
+            await dispatch({ type: ACTIONS.MAKE_REQUEST })
+            await axios.get(BASE_URL + `${userId}`)
+            .then(res => {
+                console.log("Response from Greg's server: ", res)
+                dispatch({ type: ACTIONS.GET_DATA, payload: res.data.data })
+            })
+            .catch(e => {
+                console.log("An error occurred while fetching user's medications: ", e)
+                dispatch({ type: ACTIONS.ERROR, payload: { error: e }})
+            })
+        }, 5000)
     }, [userId])
 
     return state;
