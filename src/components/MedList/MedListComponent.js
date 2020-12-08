@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import useFetchMeds from '../../functions/useFetchMeds';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import './medList.css';
+import SkeletonProfile from '../Skeletons/SkeletonProfile';
+import SkeletonArticle from '../Skeletons/SkeletonArticle';
 
 export default function MedListComponent() {
 
@@ -71,21 +73,31 @@ export default function MedListComponent() {
         <div className="medListComponent">
             <NavBarComponent />
             <div className="medListContent">
-                <div className="row no-gutters justify-content-center" style={{transform: "translateY(15%)"}}>
+                <div className="row no-gutters justify-content-center" style={{transform: (!loading ? "translateY(15%)" : "translateY(5%)")}}>
                     <div className="col-9 col-md-4 col-lg-4">
                         <div className="medListContainer">
+                            {!loading ? 
                             <img src="https://avatars2.githubusercontent.com/u/49351487?s=460&u=a49783af1f3ab38550aae809c9cc4ecdaa432c7c&v=4" alt="userPic" className="userImg img-fluid"/>    
+                            : 
+                            <SkeletonProfile theme="light" />}
+
                             <div className="medListContainerContent">
-                                <div className="row no-gutters userNameRow">
-                                    <div className="col-4" style={{position:"relative", left:"5%"}}>
-                                        {renderName()}
+                                {!loading && 
+                                
+                                <div>
+                                    <div className="row no-gutters userNameRow">
+                                        <div className="col-4" style={{position:"relative", left:"5%"}}>
+                                            {renderName()}
+                                        </div>
+                                    </div>
+                                    <div className="row no-gutters">
+                                        <div className="col-3" style={{position:"relative", left:"6%"}}>
+                                            {renderAge()}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="row no-gutters">
-                                    <div className="col-3" style={{position:"relative", left:"6%"}}>
-                                        {renderAge()}
-                                    </div>
-                                </div>
+
+                                }
                                 <div className="row no-gutters justify-content-center">
                                     <div className="col-5">
                                         <div className="medHx medHistoryContainer active">
@@ -100,8 +112,8 @@ export default function MedListComponent() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="userMedContainer">
-                                    {renderMeds()}                                
+                                <div className={!loading ? "userMedContainer" : "userMedContainer-loading"} >
+                                    {!loading ? renderMeds() : [1,2].map((n) => <SkeletonArticle key={n} theme="light"/>)}                                
                                 </div>
                             </div>
                         </div>
