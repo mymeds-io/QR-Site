@@ -35,6 +35,13 @@
     right: 4%;
 }
 
+.userMedContainer-loading {
+    height: 47vh;
+    overflow: auto;
+    position: relative;
+    right: 0%;
+}
+
 .userImg {
     position: absolute;
     top: -10%;
