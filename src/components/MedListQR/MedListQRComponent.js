@@ -4,16 +4,25 @@ import NavBarComponent from '../NavBar/NavBarComponent';
 import './medList.css';
 import SkeletonProfile from '../Skeletons/SkeletonProfile';
 import SkeletonArticle from '../Skeletons/SkeletonArticle';
+import {useParams} from "react-router-dom";
+import useFetchMedsQR from '../../functions/useFetchMedsQR';
 
-export default function MedListComponent() {
+
+export default function MedListQRComponent() {
+
+    let { id, token } = useParams();
 
     const {meds, age, name, loading, error} = useFetchMeds("1");
+
+    let userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTA2NTczOTksImlhdCI6MTYxMDU3MDk5NCwic3ViIjo5fQ.F4AMfKtCHkQfyh3hG4aWSds8gyoghB-XnFafNsJarrg'
 
     useEffect(() => {
         if(meds && meds.length > 0){
             console.log("Here are the user's meds: ", meds);
         }
     })
+    
+    useFetchMedsQR(9,userToken)
 
     const renderMeds = () => {
         if(meds){
@@ -66,10 +75,10 @@ export default function MedListComponent() {
             this.className += " active";
         });
     }
-    
-
 
     return (
+
+        
         <div className="medListComponent">
             <NavBarComponent />
             <div className="medListContent">
@@ -114,7 +123,7 @@ export default function MedListComponent() {
                                 </div>
                                 <div className={!loading ? "userMedContainer" : "userMedContainer-loading"} >
                                     {!loading ? renderMeds() : [1,2].map((n) => <SkeletonArticle key={n} theme="light"/>)}
-                                    {error && <div className="center">You have no meds to display</div>}                                
+                                    {error && <div className="center">You have no meds to display. ID: {id} Type: {token} </div>}                                
                                 </div>
                             </div>
                         </div>
