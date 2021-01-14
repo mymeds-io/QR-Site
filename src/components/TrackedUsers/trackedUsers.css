@@ -1,0 +1,40 @@
+.signInContent {
+    height: 90vh;
+}
+  
+.signInContainer {
+    background: white;
+    height: 70vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+}
+
+.signInSubmit {
+    width: 100%;
+    background: #512cc3;
+    border-color: #512cc3;
+}
+
+.signInHeader {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #403737e3;
+}
+
+.signInSubHeader {
+    font-size: .9rem;
+}
+
+.userInputs {
+    position: relative;
+    bottom: 3vh;
+}
+
+.signInLink {
+    font-weight: 600;
+}
+
+.searchInput:focus{
+    border-radius: 20px !important;
+    outline: none !important;
+}

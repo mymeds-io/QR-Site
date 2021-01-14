@@ -5,6 +5,7 @@ import HomeComponent from './components/Home/HomeComponent';
 import SignUpComponent from './components/SignUp/SignUpComponent';
 import MedListComponent from './components/MedList/MedListComponent';
 import MedListQRComponent from './components/MedListQR/MedListQRComponent';
+import TrackedComponent from './components/Tracked/TrackedComponent';
 
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
           <Route exact path="/" component={HomeComponent} />
           <Route exact path="/sign-up" component={SignUpComponent} />
           <Route exact path="/user-meds" component={MedListComponent} />
-          <Route exact path="/user-meds-qr/:id/:token" component={MedListQRComponent} />         
+          <Route exact path="/user-meds-qr/:id/:token" component={MedListQRComponent} />  
+          <Route exact path="/tracked" component={TrackedComponent} />       
         </Switch>
       </div>
     )
