@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import useFetchMeds from '../../functions/useFetchMeds';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import './medList.css';
 import SkeletonProfile from '../Skeletons/SkeletonProfile';
@@ -11,18 +10,20 @@ import useFetchMedsQR from '../../functions/useFetchMedsQR';
 export default function MedListQRComponent() {
 
     let { id, token } = useParams();
+    
+    const {meds, loading, error} = useFetchMedsQR( id, token )
 
-    const {meds, age, name, loading, error} = useFetchMeds("1");
-
-    let userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTA2NTczOTksImlhdCI6MTYxMDU3MDk5NCwic3ViIjo5fQ.F4AMfKtCHkQfyh3hG4aWSds8gyoghB-XnFafNsJarrg'
+    const age = 31
+    const name = "Greg"
 
     useEffect(() => {
         if(meds && meds.length > 0){
             console.log("Here are the user's meds: ", meds);
         }
     })
+
+    let dummyImage = "https://www.meijer.com/content/dam/meijer/product/0030/04/5044/90/0030045044905_2_A1C1_0600.png"
     
-    useFetchMedsQR(9,userToken)
 
     const renderMeds = () => {
         if(meds){
@@ -30,21 +31,21 @@ export default function MedListQRComponent() {
                 return (
                 <div className="row no-gutters medsRow justify-content-center mt-3">
                     <div className="col-1" style={{position:"relative", right:"1vw"}}>
-                        <img className="img-fluid" src={med.image} alt="medPic"/>
+                        <img className="img-fluid" src={dummyImage} alt="medPic"/>
                     </div>
                     <div className="col-8" style={{position:"relative", left:"1vw", top:"1vh"}}>
                         <div className="row no-gutters">
                             <div className="col-12">
-                                <div className="medName">{med.medName}</div>
+                                <div className="medName">{med.name}</div>
                             </div>
                             <div className="col-12">
-                                <div className="medDirections">{med.directions}</div>
+                                <div className="medDirections">{med.notes}</div>
                             </div>
                             <div className="col-5" style={{display:"flex", justifyContent:"center"}}>
-                                <div className="medRefill" style={{position:"relative", right:"1vw"}}><i className="fa fa-share" style={{fontWeight:"700"}} aria-hidden="true">{med.refill}</i></div>
+                                <div className="medRefill" style={{position:"relative", right:"1vw"}}><i className="fa fa-share" style={{fontWeight:"700"}} aria-hidden="true">{"11/30/24"}</i></div>
                             </div>
                             <div className="col-5" style={{display:"flex", justifyContent:"center"}}>
-                                <div className="medExp" style={{position:"relative", right:"10%"}}><i class="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{med.exp}</i></div>
+                                <div className="medExp" style={{position:"relative", right:"10%"}}><i class="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{"12/31/25"}</i></div>
                             </div>
                         </div>
                     </div>
