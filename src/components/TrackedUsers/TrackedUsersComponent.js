@@ -10,7 +10,7 @@ import './trackedUsers.css';
 export default function TrackedUsersComponent() {
 
     const [userId, setUserId] = useState("1");
-    const {meds, loading, error} = useFetchMeds(userId);
+    // const {trackedUsers, loading, error} = useFetchUsers(doctorId, token);
     const history = useHistory();
     
     const handleSubmit = () => {
@@ -19,7 +19,6 @@ export default function TrackedUsersComponent() {
 
     useEffect(() => {
         console.log("State userId is: ", userId);
-        console.log("Successfully fetched meds!: ", meds);
     })
 
     return (
@@ -39,6 +38,8 @@ export default function TrackedUsersComponent() {
                                 </div>
                             </div>
                         </div>
+                        {/* Not tested yet */}
+                        {/* {trackedUsers.length > 0 && trackedUsers.map((user) => <TrackedPtComponent user={user} />)} */}
                         <TrackedPtComponent />
                     </div>
                 </div>

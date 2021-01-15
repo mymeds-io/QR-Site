@@ -5,7 +5,23 @@ function TrackedPtComponent(){
     return(
         <div className="row no-gutters justify-content-center" style={{width:"100%", height:"15%"}}>
             <div className="col-11" style={{height:"100%", backgroundColor:"blue"}}>
-                <h3 style={{color:"white"}}>Sample Patient</h3>
+                <div className="row no-gutters" style={{width:"100%", height:"100%"}}>
+                    <div className="col-2 ptImage d-flex" style={{height:"100%", backgroundColor:"red", alignItems:"center", justifyContent:"center"}}>
+                        {"Add pt image"}
+                    </div>
+                    <div className="col-5 ptNameAndTime d-flex" style={{height:"100%", backgroundColor:"yellow", justifyContent:"center", flexDirection:"column"}}>
+                        <div className="row no-gutters">
+                            <div className="col-12" style={{backgroundColor:"blue"}}>
+                                {"Pt Name"}
+                            </div>
+                        </div>
+                        <div className="row no-gutters">
+                            <div className="col-12" style={{backgroundColor:"blue"}}>
+                                {"Last updated"}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

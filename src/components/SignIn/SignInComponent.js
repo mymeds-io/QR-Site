@@ -11,15 +11,26 @@ export default function SignInComponent() {
     const [userId, setUserId] = useState("1");
     const {meds, loading, error} = useFetchMeds(userId);
     const history = useHistory();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const submitValue = () => {
+        const frmdetails = {
+            'Email' : email,
+            'Password' : password
+        }
+        console.log(frmdetails);
+    }
     
     const handleSubmit = () => {
         history.push("/user-meds")
     }
 
-    useEffect(() => {
-        console.log("State userId is: ", userId);
-        console.log("Successfully fetched meds!: ", meds);
-    })
+    // useEffect(() => {
+    //     console.log("State userId is: ", userId);
+    //     console.log("Successfully fetched meds!: ", meds);
+    // })
 
     return (
         
@@ -28,7 +39,7 @@ export default function SignInComponent() {
         :
         
         <div className="signInContent">
-            <div className="row no-gutters align-items-center justify-content-center" style={{transform: "translateY(25%)"}}>
+            <div className="row no-gutters align-items-center justify-content-center" style={{transform: "translateY(10%)"}}>
                 <div className="col-8 col-md-4 col-lg-3">
                     <div className="signInContainer">
                         <div className="container-fluid" style={{display: "flex", justifyContent: "space-around", alignItems: "center", flexDirection: "column", height: "100%"}}>
@@ -45,16 +56,16 @@ export default function SignInComponent() {
                                     <form>
                                         <div className="userInputs">
                                             <div className="form-group">
-                                                <input type="email" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#xf0e0;   Email"/>
+                                                <input onChange={e => setEmail(e.target.value)} type="email" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#xf0e0;   Email"/>
                                             </div>
                                             <div className="form-group">
-                                                <input type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
+                                                <input onChange={e => setPassword(e.target.value)} type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
                                                 <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="#">Forgot Your Password?</a></small>
                                             </div>
                                         </div>
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
-                                                <button type="submit" onClick={() => handleSubmit()} className="signInSubmit btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={submitValue} className="signInSubmit btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>

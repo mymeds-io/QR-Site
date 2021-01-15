@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './signUp.css';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import NavBarComponent from '../NavBar/NavBarComponent';
@@ -11,6 +11,23 @@ export default function SignUpComponent() {
 
     const returnToSignIn = () => {
         history.push("/");
+    }
+
+    const [fName, setfName] = useState('');
+    const [lName, setlName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const submitValue = () => {
+        const frmdetails = {
+            'First Name' : fName,
+            'Last Name' : lName,
+            'Email' : email,
+            'Phone' : phone,
+            'Password' : password
+        }
+        console.log(frmdetails);
     }
 
     return (
@@ -35,26 +52,29 @@ export default function SignUpComponent() {
                             <form>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                    <input type="email" className="form-control" id="inputEmail4" placeholder="First Name" />
+                                    <input onChange={e => setfName(e.target.value)} type="name" className="form-control" id="inputEmail4" placeholder="First Name" />
                                     </div>
                                     <div className="form-group col-md-6">
-                                    <input type="password" className="form-control" id="inputPassword4" placeholder="Last Name" />
+                                    <input onChange={e => setlName(e.target.value)} type="lastName" className="form-control" id="inputPassword4" placeholder="Last Name" />
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
+                                    <input onChange={e => setEmail(e.target.value)} type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
+                                    <input onChange={e => setPhone(e.target.value)} type="text" className="form-control" id="inputPhone" placeholder="Phone Number"/>
+                                </div>
+                                <div className="form-group">
+                                    <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
-                                    <input type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
+                                    <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
                                     </div>
                                 </div>
                                 <div className="row no-gutters" style={{width: "100%", position: "relative", top: "10vh"}}>
                                     <div className="col-12">
-                                        <button type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                        <button onClick={submitValue} type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
                                     </div>
                                     <div className="col-12" style={{textAlign: "center", position: "relative", top: "2vh"}}>
                                         <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
@@ -80,33 +100,38 @@ export default function SignUpComponent() {
                                     <div className="signUpInputsMobile">
                                         <div className="form-row justify-content-center">
                                             <div className="form-group col-5">
-                                            <input type="email" className="form-control" id="inputEmail4" placeholder="First Name" />
+                                            <input onChange={e => setfName(e.target.value)} type="name" className="form-control" id="inputEmail4" placeholder="First Name" />
                                             </div>
                                             <div className="form-group col-5">
-                                            <input type="password" className="form-control" id="inputPassword4" placeholder="Last Name" />
+                                            <input onChange={e => setlName(e.target.value)} type="lastname" className="form-control" id="inputPassword4" placeholder="Last Name" />
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
-                                            <div className="form-group col-11">
-                                                <input type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
+                                            <div className="form-group col-10">
+                                                <input onChange={e => setEmail(e.target.value)} type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
-                                            <div className="form-group col-11">
-                                                <input type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
+                                            <div className="form-group col-10">
+                                                <input onChange={e => setPhone(e.target.value)} type="text" className="form-control" id="inputPhone" placeholder="Phone Number"/>
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
-                                            <div className="form-group col-11">
-                                            <input type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
+                                            <div className="form-group col-10">
+                                                <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-row justify-content-center">
+                                            <div className="form-group col-10">
+                                            <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row no-gutters justify-content-center" style={{width: "100%", position: "relative", top: "10vh"}}>
-                                        <div className="col-11">
-                                            <button type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                        <div className="col-10">
+                                            <button onClick={submitValue} type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
                                         </div>
-                                        <div className="col-11" style={{textAlign: "center", position: "relative", top: "2vh"}}>
+                                        <div className="col-10" style={{textAlign: "center", position: "relative", top: "2vh"}}>
                                             <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
                                         </div>
                                     </div>
