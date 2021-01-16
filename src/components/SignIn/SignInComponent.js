@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import useFetchMeds from '../../functions/useFetchMeds';
 import LoadingComponent from '../Loading/LoadingComponent';
 import './signIn.css';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
 
@@ -14,6 +15,12 @@ export default function SignInComponent() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const user = useSelector(state => state.user);
+    const count = useSelector(state => state.count)
+    const dispatch = useDispatch();
+
+
 
     const submitValue = () => {
         const frmdetails = {
@@ -34,9 +41,7 @@ export default function SignInComponent() {
 
     return (
         
-        ( loading ? <LoadingComponent /> 
-            
-        :
+        //Previous had loading component here; i.e. loading ? <LoadingComponent/> : etc.....
         
         <div className="signInContent">
             <div className="row no-gutters align-items-center justify-content-center" style={{transform: "translateY(10%)"}}>
@@ -67,6 +72,15 @@ export default function SignInComponent() {
                                             <div className="col-10">
                                                 <button type="submit" onClick={submitValue} className="signInSubmit btn btn-primary">Submit</button>
                                             </div>
+
+                                            {/* All a test function. Remove this div when finished */}
+                                            <div className="col-10">
+                                                <button type="submit" onClick={() => dispatch({ type:"GET_USER", payload: "Eric"})} className="signInSubmit btn btn-primary" style={{marginTop:"15px"}}>{user ? `Test: ${user}` : "Test: No current User"}</button>
+                                            </div>
+
+                                            <div className="col-10">
+                                                <button type="submit" onClick={() => dispatch({ type:"ADD"})} className="signInSubmit btn btn-primary" style={{marginTop:"15px"}}>{`Count: ${count}`}</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -82,7 +96,7 @@ export default function SignInComponent() {
                     </div>
                 </div>
             </div>
-        </div>)
+        </div>
     )
 }
 
