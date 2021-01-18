@@ -3,8 +3,13 @@ import storage from 'redux-persist/lib/storage';
 
 
 const initialState = {
-    user: "Greg",
+    viewUserEmail: '',
+    viewUserAuthToken: '',
+    isLogged: false,
     loading: false,
+    viewUserPtId: null,
+    viewUserPtToken: '',
+    error: null,
     count: 0
 }
 
@@ -13,10 +18,14 @@ function rootReducer( state = initialState, action){
     switch(action.type) {
         case "MAKE_REQUEST":
             return {...state, loading: true}
+        case "LOGIN_VIEW_USER":
+            return {...state, loading: false, isLogged: true, viewUserEmail: action.payload.viewUserEmail, viewUserAuthToken: action.payload.viewUserAuth}
         case "GET_USER":
             return { ...state, loading: false, user: action.payload }
-        case "ADD":
-            return { ...state, loading: false, count: state.count + 1}
+        case "ERROR":
+            return { ...state, loading: false, error: action.payload.error }
+        case "ADD_PT":
+            return { ...state, loading: false, viewUserPtId: action.payload.ptId, viewUserPtToken: action.payload.ptToken}
         default:
             return state;
     }

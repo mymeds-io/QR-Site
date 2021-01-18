@@ -5,9 +5,15 @@ import SkeletonProfile from '../Skeletons/SkeletonProfile';
 import SkeletonArticle from '../Skeletons/SkeletonArticle';
 import {useParams} from "react-router-dom";
 import useFetchMedsQR from '../../functions/useFetchMedsQR';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 export default function MedListQRComponent() {
+
+    const dispatch = useDispatch();
+    const history = useHistory()
+    const isLogged = useSelector(state => state.isLogged)
 
     let { id, token } = useParams();
     
@@ -16,11 +22,19 @@ export default function MedListQRComponent() {
     const age = 31
     const name = "Greg"
 
-    useEffect(() => {
-        if(meds && meds.length > 0){
-            console.log("Here are the user's meds: ", meds);
+    useEffect( async () => {
+
+        if(!isLogged){
+            await dispatch({ type: "ADD_PT", payload: {ptId: id, ptToken: token } })
+            alert("You need to be signed in to see this patient's medications")
+            history.push('/')
         }
-    })
+
+        if(meds && meds.length > 0){
+            console.log("Here are the pt's meds: ", meds);
+        }
+
+    }, [])
 
     let dummyImage = "https://www.meijer.com/content/dam/meijer/product/0030/04/5044/90/0030045044905_2_A1C1_0600.png"
     
@@ -45,7 +59,7 @@ export default function MedListQRComponent() {
                                 <div className="medRefill" style={{position:"relative", right:"1vw"}}><i className="fa fa-share" style={{fontWeight:"700"}} aria-hidden="true">{"11/30/24"}</i></div>
                             </div>
                             <div className="col-5" style={{display:"flex", justifyContent:"center"}}>
-                                <div className="medExp" style={{position:"relative", right:"10%"}}><i class="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{"12/31/25"}</i></div>
+                                <div className="medExp" style={{position:"relative", right:"10%"}}><i className="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{"12/31/25"}</i></div>
                             </div>
                         </div>
                     </div>

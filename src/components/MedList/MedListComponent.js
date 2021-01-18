@@ -35,7 +35,7 @@ export default function MedListComponent() {
                                 <div className="medRefill" style={{position:"relative", right:"1vw"}}><i className="fa fa-share" style={{fontWeight:"700"}} aria-hidden="true">{med.refill}</i></div>
                             </div>
                             <div className="col-5" style={{display:"flex", justifyContent:"center"}}>
-                                <div className="medExp" style={{position:"relative", right:"10%"}}><i class="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{med.exp}</i></div>
+                                <div className="medExp" style={{position:"relative", right:"10%"}}><i className="fa fa-ban" style={{fontWeight:"700"}} aria-hidden="true">{med.exp}</i></div>
                             </div>
                         </div>
                     </div>

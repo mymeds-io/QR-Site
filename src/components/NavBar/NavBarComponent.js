@@ -2,9 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import './navBar.css';
+import { useSelector } from 'react-redux';
 
 export default function NavBarComponent() {
 
+    const isLogged = useSelector(state => state.isLogged)
     let urlName = window.location.pathname;
     const history = useHistory();
 
@@ -29,6 +31,15 @@ export default function NavBarComponent() {
                         <a className="siteLink" href="#">About Us</a>
                     </div>
                 </div>
+                
+                {isLogged ? 
+                
+                <div className="col-3" style={{display: "flex", justifyContent: "flex-end", position: "relative", right: "2vw"}}>
+                    <button type="button" onClick={() => returnToSignIn()} className="btn btn-outline-primary btn-sm">Log Out</button>
+                </div>
+                
+                :
+                
                 <div className="col-3" style={{display: "flex", justifyContent: "flex-end", position: "relative", right: "2vw"}}>
                     {urlName === "/sign-up" ? 
                         <button type="button" onClick={() => returnToSignIn()} className="btn btn-outline-primary btn-sm">Sign In</button>
@@ -36,6 +47,8 @@ export default function NavBarComponent() {
                         <button type="button" onClick={() => returnToSignUp()} className="btn btn-outline-primary btn-sm">Sign Up</button>
                     }
                 </div>
+
+                }
             </div>
         </div>
     )
