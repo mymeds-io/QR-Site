@@ -3,11 +3,13 @@ import './signUp.css';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 export default function SignUpComponent() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const returnToSignIn = () => {
         history.push("/");
@@ -19,15 +21,34 @@ export default function SignUpComponent() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const submitValue = () => {
-        const frmdetails = {
-            'First Name' : fName,
-            'Last Name' : lName,
-            'Email' : email,
-            'Phone' : phone,
-            'Password' : password
-        }
-        console.log(frmdetails);
+
+    const submitSignUp = async () => {
+
+        await dispatch({ type: 'MAKE_REQUEST' })
+
+        var axios = require('axios');
+        var data = JSON.stringify({"full_name": `${fName} ${lName}`,"email":`${email}`,"phone":`${phone}`,"password":`${password}`});
+
+        var config = {
+            method: 'post',
+            url: 'https://morning-headland-04700.herokuapp.com/dev.mymedsapi.com/qrcode/request/viewUser/create',
+            headers: { 
+                'x-api-key': 'Pk6P3i0CVQLkgpgeQmqp', 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+
+        await axios(config)
+            .then(function (response) {
+                dispatch({  type:"LOGIN_VIEW_USER" })
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+        });
+
+        history.push("/tracked");
     }
 
     return (
@@ -74,7 +95,7 @@ export default function SignUpComponent() {
                                 </div>
                                 <div className="row no-gutters" style={{width: "100%", position: "relative", top: "10vh"}}>
                                     <div className="col-12">
-                                        <button onClick={submitValue} type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                        <button onClick={() => submitSignUp() } type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
                                     </div>
                                     <div className="col-12" style={{textAlign: "center", position: "relative", top: "2vh"}}>
                                         <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
@@ -129,7 +150,7 @@ export default function SignUpComponent() {
                                     </div>
                                     <div className="row no-gutters justify-content-center" style={{width: "100%", position: "relative", top: "10vh"}}>
                                         <div className="col-10">
-                                            <button onClick={submitValue} type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                            <button onClick={() => submitSignUp() } type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
                                         </div>
                                         <div className="col-10" style={{textAlign: "center", position: "relative", top: "2vh"}}>
                                             <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
