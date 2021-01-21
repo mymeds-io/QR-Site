@@ -39,7 +39,7 @@ export default function SignInComponent() {
         
         await axios(config)
         .then(function (response) {
-          dispatch({ type:"LOGIN_VIEW_USER", payload: {viewUserEmail: email, viewUserAuth: response.data.Authorization} })
+          dispatch({ type:"LOGIN_VIEW_USER", payload: {viewUserEmail: email, viewUserAuth: response.data.Authorization, viewUserId: response.data.id} })
           console.log(JSON.stringify(response.data));
         })
         .catch(function (error) {

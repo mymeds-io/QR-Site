@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import useFetchMeds from '../../functions/useFetchMeds';
+import { useHistory } from 'react-router-dom';
+import useFetchPts from '../../functions/useFetchPts';
 import LoadingComponent from '../Loading/LoadingComponent';
 import TrackedPtComponent from '../User/TrackedPtComponent';
+import { useSelector } from 'react-redux';
+import uuid from 'react-uuid';
 import './trackedUsers.css';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
@@ -10,15 +12,17 @@ import './trackedUsers.css';
 export default function TrackedUsersComponent() {
 
     const [userId, setUserId] = useState("1");
-    // const {trackedUsers, loading, error} = useFetchUsers(doctorId, token);
+    const { pts, loading, error } = useFetchPts(3);
     const history = useHistory();
+
+    const viewUserEmail = useSelector(state => state.viewUserEmail)
     
     const handleSubmit = () => {
         history.push("/user-meds")
     }
 
     useEffect(() => {
-        console.log("State userId is: ", userId);
+        console.log("TRACKED COMPONENT - View user's patients: ", pts);
     })
 
     return (
@@ -39,8 +43,7 @@ export default function TrackedUsersComponent() {
                             </div>
                         </div>
                         {/* Not tested yet */}
-                        {/* {trackedUsers.length > 0 && trackedUsers.map((user) => <TrackedPtComponent user={user} />)} */}
-                        <TrackedPtComponent />
+                        {pts.length > 0 && pts.map((pt) => <TrackedPtComponent key={uuid()} patient={pt} />)}
                     </div>
                 </div>
             </div>

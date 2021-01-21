@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 const initialState = {
     viewUserEmail: '',
     viewUserAuthToken: '',
+    viewUserId: null,
     isLogged: false,
     loading: false,
     viewUserPtId: null,
@@ -19,7 +20,7 @@ function rootReducer( state = initialState, action){
         case "MAKE_REQUEST":
             return {...state, loading: true}
         case "LOGIN_VIEW_USER":
-            return {...state, loading: false, isLogged: true, viewUserEmail: action.payload.viewUserEmail, viewUserAuthToken: action.payload.viewUserAuth}
+            return {...state, loading: false, isLogged: true, viewUserEmail: action.payload.viewUserEmail, viewUserAuthToken: action.payload.viewUserAuth, viewUserId: action.payload.viewUserId}
         case "GET_USER":
             return { ...state, loading: false, user: action.payload }
         case "ERROR":
