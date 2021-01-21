@@ -21,6 +21,8 @@ function rootReducer( state = initialState, action){
             return {...state, loading: true}
         case "LOGIN_VIEW_USER":
             return {...state, loading: false, isLogged: true, viewUserEmail: action.payload.viewUserEmail, viewUserAuthToken: action.payload.viewUserAuth, viewUserId: action.payload.viewUserId}
+        case "LOGOUT_VIEW_USER":
+            return {...state, loading: false, isLogged: false, viewUserEmail: '', viewUserAuthToken: '', viewUserId: null, viewUserPtId: null, viewUserPtToken: '', error: null, count: 0}
         case "GET_USER":
             return { ...state, loading: false, user: action.payload }
         case "ERROR":

@@ -2,20 +2,51 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import './navBar.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function NavBarComponent() {
 
-    const isLogged = useSelector(state => state.isLogged)
-    let urlName = window.location.pathname;
-    const history = useHistory();
+    var axios = require('axios');
 
-    const returnToSignIn = () => {
+    const isLogged = useSelector(state => state.isLogged)
+    const token = useSelector(state => state.viewUserAuthToken)
+    const dispatch = useDispatch();
+    const history = useHistory();
+    let urlName = window.location.pathname;
+
+
+    const returnToSignIn = async () => {
+
+        await dispatch({ type: 'MAKE_REQUEST' })
+
+        var data = '';
+
+        var config = {
+            method: 'post',
+            url: 'https://morning-headland-04700.herokuapp.com/http://dev.mymedsapi.com/auth/qrcode/request/viewUser/logout',
+            headers: { 
+                'x-api-key': 'Pk6P3i0CVQLkgpgeQmqp', 
+                'Authorization': `Bearer ${token}`
+                },
+                data : data
+            };
+    
+        await axios(config)
+            .then(function (response) {
+                dispatch({ type:"LOGOUT_VIEW_USER" })
+                console.log(JSON.stringify(response.data));
+        })
+            .catch(function (error) {
+                dispatch({ type:"ERROR", payload: {error: error} })
+                console.log(error);
+        });
+
         history.push("/");
+
     }
 
     const returnToSignUp = () => {
-        history.push("sign-up");
+        history.push("/sign-up");
     }
     
     return (
