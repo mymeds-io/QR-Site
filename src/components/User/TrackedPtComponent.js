@@ -12,11 +12,11 @@ function TrackedPtComponent(props){
             <div className="col-11" style={{height:"100%"}}>
                 <div className="row no-gutters" style={{width:"100%", height:"100%"}}>
                     <div className="col-2 ptImage d-flex" style={{height:"100%", alignItems:"center", justifyContent:"center", textAlign:'center'}}>
-                        {"Add pt image"}
+                        <img src="https://avatars2.githubusercontent.com/u/49351487?s=460&u=a49783af1f3ab38550aae809c9cc4ecdaa432c7c&v=4" alt="ptPic" className="img-fluid" style={{height: '70%'}}/>
                     </div>
                     <div className="col-5 ptNameAndTime d-flex" style={{height:"100%", justifyContent:"center", flexDirection:"column"}}>
                         <div className="row no-gutters justify-content-center">
-                            <div className="col-12" style={{display:'flex', justifyContent:'center'}}>
+                            <div className="ptName col-12" style={{display:'flex', justifyContent:'center', paddingRight:'2vw', fontWeight:'700'}}>
                                 {props.patient.userFirstName + ` ${props.patient.userLastName}`}
                             </div>
                         </div>

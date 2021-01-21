@@ -16,3 +16,7 @@
 .ptRow:hover {
     background-color: rgba(226, 222, 222, .6);
 }
+
+.ptName {
+    color: #53525e
+}
