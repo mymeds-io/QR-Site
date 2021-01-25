@@ -41,7 +41,8 @@ export default function SignUpComponent() {
 
         await axios(config)
             .then(function (response) {
-                dispatch({  type:"LOGIN_VIEW_USER" })
+                //Missing auth token (Add auth token later)
+                dispatch({  type:"LOGIN_VIEW_USER", payload: {viewUserEmail: email, viewUserAuth: null, viewUserId: response.data.id} })
                 console.log(JSON.stringify(response.data));
             })
             .catch(function (error) {

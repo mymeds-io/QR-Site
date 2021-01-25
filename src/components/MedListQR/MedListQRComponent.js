@@ -13,14 +13,15 @@ export default function MedListQRComponent() {
 
     const dispatch = useDispatch();
     const history = useHistory()
+    const viewUserId = useSelector(state => state.viewUserId)
     const isLogged = useSelector(state => state.isLogged)
 
-    let { id, token } = useParams();
+    let { id, fName, lName, token } = useParams();
     
-    const {meds, loading, error} = useFetchMedsQR( id, token )
+    const {meds, loading, error} = useFetchMedsQR( id, viewUserId )
 
     const age = 31
-    const name = "Greg"
+    const name = `${fName} ${lName}`
 
     useEffect( async () => {
 

@@ -20,16 +20,15 @@ function reducer(state, action) {
     }
 }
 
-export default function useFetchMedsQR(userId, token) {
+export default function useFetchMedsQR(userId, viewUserId) {
     const [ state, dispatch ] = useReducer(reducer, { meds: [], loading: true })
 
     let data = '';
 
     let config = {
         method: 'get',
-        url: `https://morning-headland-04700.herokuapp.com/http://dev.mymedsapi.com/track/${userId}`,
-        headers: { 
-            'Authorization': `Bearer ${token}`, 
+        url: `https://morning-headland-04700.herokuapp.com/http://dev.mymedsapi.com/track/qrsite/${userId}/${viewUserId}`,
+        headers: {
             'x-api-key': 'Pk6P3i0CVQLkgpgeQmqp'
         },
         data : data

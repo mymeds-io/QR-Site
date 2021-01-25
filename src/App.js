@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path="/" component={HomeComponent} />
           <Route exact path="/sign-up" component={SignUpComponent} />
           <Route exact path="/user-meds" component={MedListComponent} />
-          <Route exact path="/user-meds-qr/:id/:token" component={MedListQRComponent} />  
+          <Route exact path="/user-meds-qr/:id/:fName/:lName/:token" component={MedListQRComponent} />  
           <Route exact path="/tracked" component={TrackedComponent} />       
         </Switch>
       </div>

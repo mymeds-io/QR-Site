@@ -28,7 +28,7 @@ function TrackedPtComponent(props){
                         </div> */}
                     </div>
                     <div className="col-3" style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-                        <Link className="viewPtMedsButton" to={`/user-meds-qr/${props.patient.userId}/${authToken}`}>View Meds</Link>
+                        <Link className="viewPtMedsButton" to={`/user-meds-qr/${props.patient.userId}/${props.patient.userFirstName}/${props.patient.userLastName}/${authToken}`}>View Meds</Link>
                     </div>
                 </div>
             </div>

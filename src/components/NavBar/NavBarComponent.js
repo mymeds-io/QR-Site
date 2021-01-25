@@ -48,12 +48,19 @@ export default function NavBarComponent() {
     const returnToSignUp = () => {
         history.push("/sign-up");
     }
+
+    const returnToTrackedPts = () => {
+        history.push("/tracked")
+    }
     
     return (
         <div className="navBarComponent">
             <div className="row no-gutters justify-content-between align-items-center" style={{padding: "1vh 0vw"}}>
                 <div className="col-2 col-md-2 col-lg-1" style={{position: "relative", left: "2vw"}}>
-                    <img className="img-fluid" src={myMedsLogo} alt="myMedsLogo"/>
+                    {window.location.pathname.includes('/user-meds-qr/') ? 
+                        <div className="returnBtn" onClick={() => returnToTrackedPts()}><i className="fa fa-arrow-left returnBtnIcon"></i><div className="returnBtnText">Return</div></div>
+                    : <img className="img-fluid" src={myMedsLogo} alt="myMedsLogo"/>
+                    }
                 </div>
                 <div className="siteLinks col-7" style={{display: "flex", justifyContent: "center"}}>
                     <div>

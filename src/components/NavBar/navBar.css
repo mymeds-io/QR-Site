@@ -18,3 +18,24 @@
 .navBarComponent { 
     height: 10vh;
 }
+
+.returnBtn {
+    display: flex;
+    flex-direction: row;
+    color: blueviolet;
+}
+
+.returnBtn:hover {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.returnBtnIcon {
+    display: flex;
+    align-items: center;
+}
+
+.returnBtnText {
+    margin-left: 10%;
+    font-size: 1rem;
+}
