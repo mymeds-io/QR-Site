@@ -38,3 +38,15 @@
     border-radius: 20px !important;
     outline: none !important;
 }
+
+.emptyPtRow {
+    margin-top: 12%;
+
+}
+
+.emptyPtText {
+    text-align: center;
+    color: #867a90;
+    font-weight: 500;
+    width: 80%;
+}
