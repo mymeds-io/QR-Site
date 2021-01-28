@@ -9,19 +9,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 
-export default function MedListQRComponent() {
+export default function MedListQRComponent(props) {
 
     const dispatch = useDispatch();
     const history = useHistory()
     const viewUserId = useSelector(state => state.viewUserId)
     const isLogged = useSelector(state => state.isLogged)
 
-    let { id, fName, lName, token } = useParams();
+    let { id, token } = useParams();
     
     const {meds, loading, error} = useFetchMedsQR( id, viewUserId )
-
+    const { firstName, lastName } = props.location.state
     const age = 31
-    const name = `${fName} ${lName}`
+    const name = `${firstName} ${lastName}`
 
     useEffect( async () => {
 
@@ -41,7 +41,7 @@ export default function MedListQRComponent() {
     
 
     const renderMeds = () => {
-        if(meds){
+        if(meds && meds.length > 0){
             return meds.map((med) => {
                 return (
                 <div className="row no-gutters medsRow justify-content-center mt-3">
@@ -66,6 +66,11 @@ export default function MedListQRComponent() {
                     </div>
                 </div>)
             })
+        }
+        else if(meds.length < 1 && !error){
+            return (
+                <div className="errorMedsText" style={{width: '80%'}}>Your patient "{name}" currently has 0 meds that he/she is tracking</div>
+            )
         }
     }
 
@@ -139,7 +144,7 @@ export default function MedListQRComponent() {
                                 </div>
                                 <div className={!loading ? "userMedContainer" : "userMedContainer-loading"} >
                                     {!loading ? renderMeds() : [1,2].map((n) => <SkeletonArticle key={n} theme="light"/>)}
-                                    {error && <div className="center">You have no meds to display. ID: {id} Type: {token} </div>}                                
+                                    {error && <div className="errorMedsText"> An error occurred while retrieving {name}'s medications </div>}                                
                                 </div>
                             </div>
                         </div>

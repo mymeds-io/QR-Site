@@ -133,11 +133,27 @@
     font-weight: 700;
 }
 
-.center {
+.noMedsText {
+    text-align: center;
+    color: #867a90;
+    font-weight: 500;
     margin: 0;
     position: absolute;
-    top: 50%;
-    left: 55%;
+    top: 30%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.errorMedsText {
+    text-align: center;
+    color: #867a90;
+    font-weight: 500;
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 54%;
     transform: translate(-50%, -50%);
     text-align: center;
     width: 100%;

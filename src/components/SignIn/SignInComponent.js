@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './signIn.css';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import { loginConfig } from '../../functions/config';
 
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
@@ -10,10 +11,8 @@ import axios from 'axios';
 export default function SignInComponent() {
 
     const history = useHistory();
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const isLogged = useSelector(state => state.isLogged)
     const user = useSelector(state => state.user);
     const count = useSelector(state => state.count)
@@ -27,15 +26,7 @@ export default function SignInComponent() {
 
         let data = JSON.stringify({ "email": email,"password": password });
         
-        let config = {
-          method: 'post',
-          url: 'https://morning-headland-04700.herokuapp.com/http://dev.mymedsapi.com/auth/qrcode/request/viewUser/login',
-          headers: { 
-            'x-api-key': 'Pk6P3i0CVQLkgpgeQmqp', 
-            'Content-Type': 'application/json'
-          },
-          data : data
-        };
+        let config = loginConfig(data);
         
         await axios(config)
         .then(function (response) {
