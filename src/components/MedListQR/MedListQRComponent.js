@@ -19,7 +19,7 @@ export default function MedListQRComponent(props) {
     let { id, token } = useParams();
     
     const {meds, loading, error} = useFetchMedsQR( id, viewUserId )
-    const { firstName, lastName } = props.location.state
+    const { firstName, lastName, userPhoto } = props.location.state
     const age = 31
     const name = `${firstName} ${lastName}`
 
@@ -107,7 +107,7 @@ export default function MedListQRComponent(props) {
                     <div className="col-9 col-md-4 col-lg-4">
                         <div className="medListContainer">
                             {!loading ? 
-                            <img src="https://avatars2.githubusercontent.com/u/49351487?s=460&u=a49783af1f3ab38550aae809c9cc4ecdaa432c7c&v=4" alt="userPic" className="userImg img-fluid"/>    
+                            <img src={userPhoto} alt="userPic" className="userImg img-fluid"/>    
                             : 
                             <SkeletonProfile theme="light" />}
 
