@@ -6,7 +6,10 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { signUpConfig } from '../../functions/config';
+import TrueVaultClient from 'truevault';
+import constant from '../../constants';
 
+const tvClient = new TrueVaultClient({ apiKey: constant.apiKey })
 
 export default function SignUpComponent() {
 
@@ -42,6 +45,27 @@ export default function SignUpComponent() {
         await signUpViewUser();
     }
 
+    const testTv = async () => {
+        const response = await tvClient.readCurrentUser()
+        console.log(response)
+        console.log('Group Doc ID: ', constant.tvGroupDocId)
+    }
+
+    const signUpTVUser = async (event, email, password, firstName, lastName, phoneNum) => {
+        event.preventDefault()
+        let tvAttributes = {name: firstName, lastName: lastName, phone: phoneNum}
+        let groupIds = []
+        groupIds.push(constant.tvGroupDocId)
+        console.log(`signupTvUser function started`)
+        try {
+            const newDoctor = await tvClient.createUser(email, password, tvAttributes)
+            console.log(newDoctor)
+            alert(`Thank you! You have successfully signed up to myMedsRec!`)       
+        } catch (error) {
+            console.log(`An error occured while creating a new Doctor user: `, error)
+        }
+    }
+
     return (
         <div className="signUpContent">
             <div className="d-none d-sm-none d-md-flex signUpComponentDesktop">
@@ -59,6 +83,7 @@ export default function SignUpComponent() {
                             <h4 style={{fontWeight: "700"}}>Sign Up</h4>
                         </div>
                     </div>
+                    <button type="button" onClick={() => testTv()}>Test Button</button>
                     <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
                         <div className="col-5" style={{position: "relative", right: "1vw"}}>
                             <form>
@@ -86,7 +111,7 @@ export default function SignUpComponent() {
                                 </div>
                                 <div className="row no-gutters" style={{width: "100%", position: "relative", top: "10vh"}}>
                                     <div className="col-12">
-                                        <button onClick={(event) => submitSignUp(event) } type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                        <button onClick={(event) => signUpTVUser(event, email, password, fName, lName, phone) } type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
                                     </div>
                                     <div className="col-12" style={{textAlign: "center", position: "relative", top: "2vh"}}>
                                         <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
@@ -105,6 +130,7 @@ export default function SignUpComponent() {
                             <h4>Sign Up</h4>
                         </div>
                     </div>
+                    <button type="button" onClick={() => testTv()}>Test Button</button>
                     <div className="row no-gutters align-items-center justify-content-center">
                         <div className="col-8">
                             <div className="signUpContainerMobile">
@@ -141,7 +167,7 @@ export default function SignUpComponent() {
                                     </div>
                                     <div className="row no-gutters justify-content-center" style={{width: "100%", position: "relative", top: "10vh"}}>
                                         <div className="col-10">
-                                            <button onClick={(event) => submitSignUp(event) } type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
+                                            <button onClick={(event) => signUpTVUser(event, email, password, fName, lName, phone) } type="submit" className="signUpBtn btn btn-primary" >Sign up for myMeds</button>
                                         </div>
                                         <div className="col-10" style={{textAlign: "center", position: "relative", top: "2vh"}}>
                                             <small className="form-text text-muted">By clicking "Sign up for myMeds" You agree to our Terms of Service and Privacy Statement</small>
