@@ -4,7 +4,7 @@ import './signIn.css';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginConfig } from '../../functions/config';
-
+import TrueVaultClient from 'truevault';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
 
