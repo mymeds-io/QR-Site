@@ -3,7 +3,7 @@ import './signUp.css';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { signUpConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
@@ -15,7 +15,6 @@ export default function SignUpComponent() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const tvUser = useSelector(state => state.tvUser)
     const [fName, setfName] = useState('');
     const [lName, setlName] = useState('');
     const [phone, setPhone] = useState('');
