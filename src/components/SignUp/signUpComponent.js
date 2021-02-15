@@ -3,7 +3,7 @@ import './signUp.css';
 import myMedsLogo from '../../images/myMedsLogo.png';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { signUpConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
@@ -15,11 +15,13 @@ export default function SignUpComponent() {
 
     const history = useHistory();
     const dispatch = useDispatch();
+    const tvUser = useSelector(state => state.tvUser)
     const [fName, setfName] = useState('');
     const [lName, setlName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const returnToSignIn = () => {
         history.push("/");
@@ -44,11 +46,14 @@ export default function SignUpComponent() {
         event.preventDefault()
         await signUpViewUser();
     }
-
-    const testTv = async () => {
-        const response = await tvClient.readCurrentUser()
-        console.log(response)
-        console.log('Group Doc ID: ', constant.tvGroupDocId)
+    
+    const resetInputFields = () => {
+        setfName('')
+        setlName('')
+        setPhone('')
+        setEmail('')
+        setPassword('')
+        setPasswordConfirm('')
     }
 
     const signUpTVUser = async (event, email, password, firstName, lastName, phoneNum) => {
@@ -57,11 +62,15 @@ export default function SignUpComponent() {
         let groupIds = []
         groupIds.push(constant.tvGroupDocId)
         console.log(`signupTvUser function started`)
+
         try {
             const newDoctor = await tvClient.createUser(email, password, tvAttributes)
             console.log(newDoctor)
+            resetInputFields()
+            await dispatch({ type: "ADD_CREATED_TV_USER", payload: newDoctor })
             alert(`Thank you! You have successfully signed up to myMedsRec!`)       
         } catch (error) {
+            resetInputFields()
             console.log(`An error occured while creating a new Doctor user: `, error)
         }
     }
@@ -83,30 +92,29 @@ export default function SignUpComponent() {
                             <h4 style={{fontWeight: "700"}}>Sign Up</h4>
                         </div>
                     </div>
-                    <button type="button" onClick={() => testTv()}>Test Button</button>
                     <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
                         <div className="col-5" style={{position: "relative", right: "1vw"}}>
                             <form>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                    <input onChange={e => setfName(e.target.value)} type="name" className="form-control" id="inputEmail4" placeholder="First Name" />
+                                    <input onChange={e => setfName(e.target.value)} value={fName} type="name" className="form-control" id="inputEmail4" placeholder="First Name" />
                                     </div>
                                     <div className="form-group col-md-6">
-                                    <input onChange={e => setlName(e.target.value)} type="lastName" className="form-control" id="inputPassword4" placeholder="Last Name" />
+                                    <input onChange={e => setlName(e.target.value)} value={lName} type="lastName" className="form-control" id="inputPassword4" placeholder="Last Name" />
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <input onChange={e => setEmail(e.target.value)} type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
+                                    <input onChange={e => setEmail(e.target.value)} value={email} type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
                                 </div>
                                 <div className="form-group">
-                                    <input onChange={e => setPhone(e.target.value)} type="text" className="form-control" id="inputPhone" placeholder="Phone Number"/>
+                                    <input onChange={e => setPhone(e.target.value)} value={phone} type="text" className="form-control" id="inputPhone" placeholder="Phone Number"/>
                                 </div>
                                 <div className="form-group">
-                                    <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
+                                    <input onChange={e => setPassword(e.target.value)} value={password} type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
-                                    <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
+                                    <input onChange={e => setPasswordConfirm(e.target.value)} value={passwordConfirm} type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
                                     </div>
                                 </div>
                                 <div className="row no-gutters" style={{width: "100%", position: "relative", top: "10vh"}}>
@@ -130,7 +138,6 @@ export default function SignUpComponent() {
                             <h4>Sign Up</h4>
                         </div>
                     </div>
-                    <button type="button" onClick={() => testTv()}>Test Button</button>
                     <div className="row no-gutters align-items-center justify-content-center">
                         <div className="col-8">
                             <div className="signUpContainerMobile">
@@ -138,30 +145,30 @@ export default function SignUpComponent() {
                                     <div className="signUpInputsMobile">
                                         <div className="form-row justify-content-center">
                                             <div className="form-group col-5">
-                                            <input onChange={e => setfName(e.target.value)} type="name" className="form-control" id="inputEmail4" placeholder="First Name" />
+                                            <input onChange={e => setfName(e.target.value)} value={fName} type="name" className="form-control" id="inputEmail4" placeholder="First Name" />
                                             </div>
                                             <div className="form-group col-5">
-                                            <input onChange={e => setlName(e.target.value)} type="lastname" className="form-control" id="inputPassword4" placeholder="Last Name" />
+                                            <input onChange={e => setlName(e.target.value)} value={lName} type="lastname" className="form-control" id="inputPassword4" placeholder="Last Name" />
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
                                             <div className="form-group col-10">
-                                                <input onChange={e => setEmail(e.target.value)} type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
+                                                <input onChange={e => setEmail(e.target.value)} value={email} type="text" className="form-control" id="inputAddress" placeholder="Email Address"/>
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
                                             <div className="form-group col-10">
-                                                <input onChange={e => setPhone(e.target.value)} type="text" className="form-control" id="inputPhone" placeholder="Phone Number"/>
+                                                <input onChange={e => setPhone(e.target.value)} value={phone} type="text" className="form-control" id="inputPhone" placeholder="Phone Number"/>
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
                                             <div className="form-group col-10">
-                                                <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
+                                                <input onChange={e => setPassword(e.target.value)} value={password} type="text" className="form-control" id="inputAddress2" placeholder="Create Password"/>
                                             </div>
                                         </div>
                                         <div className="form-row justify-content-center">
                                             <div className="form-group col-10">
-                                            <input onChange={e => setPassword(e.target.value)} type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
+                                            <input onChange={e => setPasswordConfirm(e.target.value)} value={passwordConfirm} type="text" className="form-control" id="inputCity" placeholder="Confirm Password" />
                                             </div>
                                         </div>
                                     </div>
