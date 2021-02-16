@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
+import constant from '../../constants';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
 
@@ -20,6 +21,11 @@ export default function SignInComponent() {
     const viewUserEmail = useSelector(state => state.viewUserEmail)
     const viewUserAuth = useSelector(state => state.viewUserAuthToken)
     const dispatch = useDispatch();
+
+    const resetInputFields = () => {
+        setEmail('')
+        setPassword('')
+    }
 
     const loginViewUser = async (email, password) => {
         await dispatch({ type: "MAKE_REQUEST" })
@@ -39,11 +45,28 @@ export default function SignInComponent() {
         });
     }
 
+    const loginTVUser = async (email, password) => {
+        console.log(`loginTvUser function started`)
 
-    const submitValue = async (event) => {
+        const accountId = constant.accountId
+
+        try {
+            const loggedUser = await TrueVaultClient.login(accountId, email, password)
+            console.log("Successfully logged in as: ", loggedUser)
+            resetInputFields()
+            await dispatch({ type: "ADD_LOGGED_TV_USER", payload: loggedUser })
+            alert(`Thank you! You have successfully SIGNED in to myMedsRec!`)       
+        } catch (error) {
+            resetInputFields()
+            console.log(`An error occured while attempting to log in: `, error)
+        }
+    }
+
+    const submitValue = async (event, email, password) => {
         event.preventDefault()
-        await loginViewUser(email, password)
-        console.log("State after login: ", state)
+        // await loginViewUser(email, password)
+        // console.log("State after login: ", state)
+        await loginTVUser(email, password)
     }
     
     const handleSubmit = () => {
@@ -89,7 +112,7 @@ export default function SignInComponent() {
                                         </div>
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
-                                                <button type="submit" onClick={(event) => submitValue(event) } className="signInSubmit btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={(event) => submitValue(event, email, password) } className="signInSubmit btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>

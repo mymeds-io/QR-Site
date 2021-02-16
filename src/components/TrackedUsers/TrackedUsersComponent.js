@@ -6,16 +6,19 @@ import TrackedPtComponent from '../User/TrackedPtComponent';
 import { useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 import './trackedUsers.css';
+import getStoredState from 'redux-persist/es/getStoredState';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
 
 export default function TrackedUsersComponent() {
+    
+    const viewUserId = useSelector(state => state.viewUserId)
+    const viewUserEmail = useSelector(state => state.viewUserEmail)
 
     const [userId, setUserId] = useState("1");
-    const { pts, loading, error } = useFetchPts(3);
+    const { pts, loading, error } = useFetchPts(viewUserId);
     const history = useHistory();
 
-    const viewUserEmail = useSelector(state => state.viewUserEmail)
     
     const handleSubmit = () => {
         history.push("/user-meds")

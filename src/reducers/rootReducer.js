@@ -22,6 +22,8 @@ function rootReducer( state = initialState, action){
             return {...state, loading: true}
         case "ADD_CREATED_TV_USER":
             return {...state, loading: false, isLogged: true, tvUser: action.payload}
+        case "ADD_LOGGED_TV_USER":
+            return {...state, loading: false, isLogged: true, tvUser: action.payload}
         case "LOGIN_VIEW_USER":
             return {...state, loading: false, isLogged: true, viewUserEmail: action.payload.viewUserEmail, viewUserAuthToken: action.payload.viewUserAuth, viewUserId: action.payload.viewUserId}
         case "LOGOUT_VIEW_USER":

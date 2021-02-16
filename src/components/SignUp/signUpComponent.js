@@ -65,6 +65,7 @@ export default function SignUpComponent() {
         try {
             const newDoctor = await tvClient.createUser(email, password, tvAttributes)
             console.log(newDoctor)
+            await tvClient.addUsersToGroup(constant.tvGroupDocId, [newDoctor.id])
             resetInputFields()
             await dispatch({ type: "ADD_CREATED_TV_USER", payload: newDoctor })
             alert(`Thank you! You have successfully signed up to myMedsRec!`)       
