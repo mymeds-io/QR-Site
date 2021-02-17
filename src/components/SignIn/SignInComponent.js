@@ -14,6 +14,7 @@ export default function SignInComponent() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [qrImage, setImage] = useState(`https://via.placeholder.com/150`)
     const isLogged = useSelector(state => state.isLogged)
     const user = useSelector(state => state.user);
     const count = useSelector(state => state.count)
@@ -53,6 +54,11 @@ export default function SignInComponent() {
         try {
             const loggedUser = await TrueVaultClient.login(accountId, email, password)
             console.log("Successfully logged in as: ", loggedUser)
+            const currentUser = await loggedUser.readCurrentUser()
+            console.log(`Current user: `, currentUser)
+            const multiAuth = await loggedUser.startUserMfaEnrollment(currentUser.id, 'myMedsRec')
+            console.log(`Multi auth: `, multiAuth.qr_code_svg)
+            setImage(multiAuth.qr_code_svg)
             resetInputFields()
             await dispatch({ type: "ADD_LOGGED_TV_USER", payload: loggedUser })
             alert(`Thank you! You have successfully SIGNED in to myMedsRec!`)       
@@ -73,13 +79,13 @@ export default function SignInComponent() {
         history.push("/user-meds")
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if(isLogged){
-            history.push('/tracked')
-        }
+    //     if(isLogged){
+    //         history.push('/tracked')
+    //     }
 
-    }, [isLogged])
+    // }, [isLogged])
 
     return (
         
@@ -118,6 +124,10 @@ export default function SignInComponent() {
                                     </form>
                                 </div>
                             </div>
+                            {qrImage == `https://via.placeholder.com/150` ? 
+                                <img src={qrImage} ></img>   : 
+                                <img src={`data:image/svg+xml;base64,${btoa(qrImage)}`}></img>                
+                            }
                             <div className="row no-gutters" style={{width: "100%"}}>
                                 <div className="col-12">
                                     <p style={{textAlign: "center"}}>
