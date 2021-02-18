@@ -79,13 +79,11 @@ export default function SignInComponent() {
         history.push("/user-meds")
     }
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     if(isLogged){
-    //         history.push('/tracked')
-    //     }
+        
 
-    // }, [isLogged])
+    }, [])
 
     return (
         

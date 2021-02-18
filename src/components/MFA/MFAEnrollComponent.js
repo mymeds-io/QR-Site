@@ -4,10 +4,11 @@ import './mfaEnroll.css';
 
 export default function MFAEnrollComponent() {
 
+    
     return (
         <div className="mfaEnrollComponent">
             <NavBarComponent />
-            <div className="row no-gutters justify-content-center" style={{width: '100%', height: '100%'}}>
+            <div className="row no-gutters justify-content-center" style={{width: '100vw', height: '90vh'}}>
                 <div className="mfaEnrollBlock col-9" style={{height: '80%', textAlign: 'center'}}>
                     <h5>Thank you for signing up! You're just about done! In order to complete your registration, please scan the QR code presented below with your authenticator then submit the two MFA codes generated.</h5>
                     <img className="mt-4" src="https://via.placeholder.com/150" alt=""/>
