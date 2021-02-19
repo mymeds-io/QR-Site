@@ -21,6 +21,7 @@ export default function SignInComponent() {
     const state = useSelector(state => state)
     const viewUserEmail = useSelector(state => state.viewUserEmail)
     const viewUserAuth = useSelector(state => state.viewUserAuthToken)
+    const mfaQRCode = useSelector(state => state.mfaQRCode)
     const dispatch = useDispatch();
 
     const resetInputFields = () => {
@@ -81,7 +82,7 @@ export default function SignInComponent() {
 
     useEffect(() => {
 
-        
+        console.log('Redux qr code: ', mfaQRCode)
 
     }, [])
 
