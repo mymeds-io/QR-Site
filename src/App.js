@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import {Route, Switch} from 'react-router-dom';
 import HomeComponent from './components/Home/HomeComponent';
-import SignUpComponent from './components/SignUp/SignUpComponent';
+import SignUpComponent from './components/SignUp/signUpComponent';
 import MedListComponent from './components/MedList/MedListComponent';
 import MedListQRComponent from './components/MedListQR/MedListQRComponent';
 import TrackedComponent from './components/Tracked/TrackedComponent';
