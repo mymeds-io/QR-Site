@@ -9,7 +9,7 @@ import { signUpConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
 import constant from '../../constants';
 
-const tvClient = new TrueVaultClient({ apiKey: constant.apiKey })
+const tvClient = new TrueVaultClient({ apiKey: constant.adminApiKey })
 
 export default function SignUpComponent() {
 
@@ -65,9 +65,17 @@ export default function SignUpComponent() {
         try {
             const newDoctor = await tvClient.createUser(email, password, tvAttributes)
             console.log(newDoctor)
-            resetInputFields()
-            await dispatch({ type: "ADD_CREATED_TV_USER", payload: newDoctor })
-            alert(`Thank you! You have successfully signed up to myMedsRec!`)       
+            await tvClient.addUsersToGroup(constant.tvGroupDocId, [newDoctor.id])
+            await tvClient.addUsersToGroup(constant.mfaGroupId, [newDoctor.id])
+            const multiAuth = await tvClient.startUserMfaEnrollment(newDoctor.id, 'myMedsRec')
+            await dispatch({ type: "ADD_MFA_QR_CODE", payload: multiAuth.qr_code_svg })                
+            await resetInputFields()
+            // await dispatch({ type: "ADD_CREATED_TV_USER", payload: newDoctor })
+            // alert(`Thank you! You have successfully signed up to myMedsRec!`)
+            history.push({
+                pathname: '/mfa-enroll',
+                state: { tvClient: tvClient, newDoctorId: newDoctor.id, newDoctor: newDoctor }
+            })
         } catch (error) {
             resetInputFields()
             console.log(`An error occured while creating a new Doctor user: `, error)

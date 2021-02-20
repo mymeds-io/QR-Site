@@ -6,16 +6,19 @@ import TrackedPtComponent from '../User/TrackedPtComponent';
 import { useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 import './trackedUsers.css';
+import getStoredState from 'redux-persist/es/getStoredState';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
 
 export default function TrackedUsersComponent() {
+    
+    const viewUserId = useSelector(state => state.viewUserId)
+    const viewUserEmail = useSelector(state => state.viewUserEmail)
 
     const [userId, setUserId] = useState("1");
-    const { pts, loading, error } = useFetchPts(3);
+    const { pts, loading, error } = useFetchPts(viewUserId);
     const history = useHistory();
 
-    const viewUserEmail = useSelector(state => state.viewUserEmail)
     
     const handleSubmit = () => {
         history.push("/user-meds")
@@ -45,7 +48,7 @@ export default function TrackedUsersComponent() {
                         {pts.length > 0 ? pts.map((pt) => <TrackedPtComponent key={uuid()} patient={pt} />)
                         :
                         <div className="row no-gutters justify-content-center emptyPtRow">
-                            <div className="emptyPtText">You currently have 0 patients that you are following. Start adding patients by scanning their QR code on their myMedsRec app.</div>
+                            <div className="emptyPtText">You currently have 0 patients that you are following. You can start adding patients by scanning their QR code on their myMedsRec app.</div>
                         </div>
                         }
                     </div>

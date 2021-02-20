@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
+import constant from '../../constants';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
 
@@ -12,6 +13,7 @@ export default function SignInComponent() {
 
     const history = useHistory();
     const [email, setEmail] = useState('');
+    const [mfa, setMFA] = useState('');
     const [password, setPassword] = useState('');
     const isLogged = useSelector(state => state.isLogged)
     const user = useSelector(state => state.user);
@@ -19,7 +21,14 @@ export default function SignInComponent() {
     const state = useSelector(state => state)
     const viewUserEmail = useSelector(state => state.viewUserEmail)
     const viewUserAuth = useSelector(state => state.viewUserAuthToken)
+    const mfaQRCode = useSelector(state => state.mfaQRCode)
     const dispatch = useDispatch();
+
+    const resetInputFields = () => {
+        setEmail('')
+        setMFA('')
+        setPassword('')
+    }
 
     const loginViewUser = async (email, password) => {
         await dispatch({ type: "MAKE_REQUEST" })
@@ -39,11 +48,32 @@ export default function SignInComponent() {
         });
     }
 
+    const loginTVUser = async (email, password, mfaCode) => {
+        console.log(`loginTvUser function started`)
 
-    const submitValue = async (event) => {
+        const accountId = constant.accountId
+
+        try {
+            const loggedUser = await TrueVaultClient.login(accountId, email, password, mfaCode)
+            console.log("Successfully logged in as: ", loggedUser)
+            const currentUser = await loggedUser.readCurrentUser()
+            console.log(`Current user: `, currentUser)
+            resetInputFields()
+            await dispatch({ type: "ADD_LOGGED_TV_USER", payload: loggedUser })
+            alert(`Thank you! You have successfully SIGNED in to myMedsRec!`)
+            history.push('/tracked')       
+        } catch (error) {
+            resetInputFields()
+            console.log(`An error occured while attempting to log you in: `, error)
+            alert('Sorry. We were not able to log you in to myMedsRec. Please try again later or contact us at support@MyMedsRec.com')
+        }
+    }
+
+    const submitValue = async (event, email, password, mfaCode) => {
         event.preventDefault()
-        await loginViewUser(email, password)
-        console.log("State after login: ", state)
+        // await loginViewUser(email, password)
+        // console.log("State after login: ", state)
+        await loginTVUser(email, password, mfaCode)
     }
     
     const handleSubmit = () => {
@@ -52,11 +82,9 @@ export default function SignInComponent() {
 
     useEffect(() => {
 
-        if(isLogged){
-            history.push('/tracked')
-        }
+        console.log('Redux qr code: ', mfaQRCode)
 
-    }, [isLogged])
+    }, [])
 
     return (
         
@@ -80,16 +108,19 @@ export default function SignInComponent() {
                                     <form>
                                         <div className="userInputs">
                                             <div className="form-group">
-                                                <input onChange={e => setEmail(e.target.value)} type="email" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#xf0e0;   Email"/>
+                                                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#xf0e0;   Email"/>
                                             </div>
                                             <div className="form-group">
-                                                <input onChange={e => setPassword(e.target.value)} type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
+                                                <input value={mfa} onChange={e => setMFA(e.target.value)} type="text" className="form-control" style={{fontFamily: "FontAwesome"}} id="mfaCodeInput" aria-describedby="mfaCode" placeholder="&#xf084;   MFA Code"/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
                                                 <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="#">Forgot Your Password?</a></small>
                                             </div>
                                         </div>
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
-                                                <button type="submit" onClick={(event) => submitValue(event) } className="signInSubmit btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={(event) => submitValue(event, email, password, mfa) } className="signInSubmit btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
