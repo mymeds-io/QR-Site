@@ -13,8 +13,8 @@ export default function SignInComponent() {
 
     const history = useHistory();
     const [email, setEmail] = useState('');
+    const [mfa, setMFA] = useState('');
     const [password, setPassword] = useState('');
-    const [qrImage, setImage] = useState(`https://via.placeholder.com/150`)
     const isLogged = useSelector(state => state.isLogged)
     const user = useSelector(state => state.user);
     const count = useSelector(state => state.count)
@@ -26,6 +26,7 @@ export default function SignInComponent() {
 
     const resetInputFields = () => {
         setEmail('')
+        setMFA('')
         setPassword('')
     }
 
@@ -47,33 +48,32 @@ export default function SignInComponent() {
         });
     }
 
-    const loginTVUser = async (email, password) => {
+    const loginTVUser = async (email, password, mfaCode) => {
         console.log(`loginTvUser function started`)
 
         const accountId = constant.accountId
 
         try {
-            const loggedUser = await TrueVaultClient.login(accountId, email, password)
+            const loggedUser = await TrueVaultClient.login(accountId, email, password, mfaCode)
             console.log("Successfully logged in as: ", loggedUser)
             const currentUser = await loggedUser.readCurrentUser()
             console.log(`Current user: `, currentUser)
-            const multiAuth = await loggedUser.startUserMfaEnrollment(currentUser.id, 'myMedsRec')
-            console.log(`Multi auth: `, multiAuth.qr_code_svg)
-            setImage(multiAuth.qr_code_svg)
             resetInputFields()
             await dispatch({ type: "ADD_LOGGED_TV_USER", payload: loggedUser })
-            alert(`Thank you! You have successfully SIGNED in to myMedsRec!`)       
+            alert(`Thank you! You have successfully SIGNED in to myMedsRec!`)
+            history.push('/tracked')       
         } catch (error) {
             resetInputFields()
-            console.log(`An error occured while attempting to log in: `, error)
+            console.log(`An error occured while attempting to log you in: `, error)
+            alert('Sorry. We were not able to log you in to myMedsRec. Please try again later or contact us at support@MyMedsRec.com')
         }
     }
 
-    const submitValue = async (event, email, password) => {
+    const submitValue = async (event, email, password, mfaCode) => {
         event.preventDefault()
         // await loginViewUser(email, password)
         // console.log("State after login: ", state)
-        await loginTVUser(email, password)
+        await loginTVUser(email, password, mfaCode)
     }
     
     const handleSubmit = () => {
@@ -108,25 +108,24 @@ export default function SignInComponent() {
                                     <form>
                                         <div className="userInputs">
                                             <div className="form-group">
-                                                <input onChange={e => setEmail(e.target.value)} type="email" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#xf0e0;   Email"/>
+                                                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="&#xf0e0;   Email"/>
                                             </div>
                                             <div className="form-group">
-                                                <input onChange={e => setPassword(e.target.value)} type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
+                                                <input value={mfa} onChange={e => setMFA(e.target.value)} type="text" className="form-control" style={{fontFamily: "FontAwesome"}} id="mfaCodeInput" aria-describedby="mfaCode" placeholder="&#xf084;   MFA Code"/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
                                                 <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="#">Forgot Your Password?</a></small>
                                             </div>
                                         </div>
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
-                                                <button type="submit" onClick={(event) => submitValue(event, email, password) } className="signInSubmit btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={(event) => submitValue(event, email, password, mfa) } className="signInSubmit btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            {qrImage == `https://via.placeholder.com/150` ? 
-                                <img src={qrImage} ></img>   : 
-                                <img src={`data:image/svg+xml;base64,${btoa(qrImage)}`}></img>                
-                            }
                             <div className="row no-gutters" style={{width: "100%"}}>
                                 <div className="col-12">
                                     <p style={{textAlign: "center"}}>

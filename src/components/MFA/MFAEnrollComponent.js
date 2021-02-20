@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import NavBarComponent from '../NavBar/NavBarComponent';
 import './mfaEnroll.css';
 
@@ -9,6 +10,7 @@ export default function MFAEnrollComponent(props) {
     const [mfaCode1, setMFACode1] = useState('')
     const [mfaCode2, setMFACode2] = useState('')
     const mfaQRCode = useSelector(state => state.mfaQRCode)
+    const history = useHistory()
 
     const { tvClient, newDoctorId, newDoctor } = props.location.state
 
@@ -30,10 +32,12 @@ export default function MFAEnrollComponent(props) {
           newDoctor.mfa_enrolled = true;
           console.log('Newly enrolled doctor: ', newDoctor)
           resetFields()
-          alert("Congratulations! You have successfully registered with myMedsRec!")  
+          alert("Congratulations! You have successfully registered with myMedsRec!")
+          history.push('/tracked')
         } catch (error) {
             console.log('An error occurred while finalizing MFA enrollment: ', error)
             resetFields()
+            alert('Sorry. An error occurred while finalizing your MFA enrollment. Please double check your input values and make sure they are correct. If the problem persists, please try again later or contact us at support@MyMedsRec.com')
         }
     }
 

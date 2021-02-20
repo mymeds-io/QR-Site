@@ -48,7 +48,7 @@ export default function TrackedUsersComponent() {
                         {pts.length > 0 ? pts.map((pt) => <TrackedPtComponent key={uuid()} patient={pt} />)
                         :
                         <div className="row no-gutters justify-content-center emptyPtRow">
-                            <div className="emptyPtText">You currently have 0 patients that you are following. Start adding patients by scanning their QR code on their myMedsRec app.</div>
+                            <div className="emptyPtText">You currently have 0 patients that you are following. You can start adding patients by scanning their QR code on their myMedsRec app.</div>
                         </div>
                         }
                     </div>

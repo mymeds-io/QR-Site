@@ -7,6 +7,7 @@ import MedListComponent from './components/MedList/MedListComponent';
 import MedListQRComponent from './components/MedListQR/MedListQRComponent';
 import TrackedComponent from './components/Tracked/TrackedComponent';
 import MFAEnrollComponent from './components/MFA/MFAEnrollComponent';
+import ForgotPassComponent from './components/Forgot/ForgotPassComponent';
 
 
 class App extends Component {
@@ -21,7 +22,8 @@ class App extends Component {
           <Route exact path="/mfa-enroll" component={MFAEnrollComponent} />
           <Route exact path="/user-meds" component={MedListComponent} />
           <Route exact path="/user-meds-qr/:id/:token" component={MedListQRComponent} />  
-          <Route exact path="/tracked" component={TrackedComponent} />       
+          <Route exact path="/tracked" component={TrackedComponent} />
+          <Route exact path="/forgot-password" component={ForgotPassComponent} />              
         </Switch>
       </div>
     )
