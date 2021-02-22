@@ -115,7 +115,7 @@ export default function SignInComponent() {
                                             </div>
                                             <div className="form-group">
                                                 <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" style={{fontFamily: "FontAwesome"}} id="exampleInputPassword1" placeholder="&#xf023;    Password" />
-                                                <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="#">Forgot Your Password?</a></small>
+                                                <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="/forgot-password">Forgot Your Password?</a></small>
                                             </div>
                                         </div>
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>

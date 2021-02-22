@@ -1,38 +1,32 @@
-.forgotPassComponent {
+.resetPassComponent {
     height: 100vh;
     width: 100vw;
 }
 
-.inputBox {
+.updateBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.inputEmailReset {
+.inputUpdateBox {
     display: flex;
     justify-content: center;
     position: relative;
     right: 2%;
 }
 
-.submitResetBtn { 
+.submitUpdateBtn { 
     position: relative;
     left: 3%;
 }
 
-.resetInput {
+.updateInput {
     padding-left: 5px;
     border-radius: 5px;
     border: .5px solid black;
 }
 
-.resetInput:focus {
+.updateInput:focus {
     outline: none !important;
 }
-
-/* For some reason, there is a black outlining on the top left corners of input */
-
-/* .resetInput {
-    border-radius: 10px;
-} */
