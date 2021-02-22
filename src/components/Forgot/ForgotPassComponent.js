@@ -7,8 +7,8 @@ export default function ForgotPassComponent() {
 
     const [email, setEmail] = useState('')
 
-    const scopedAccessTokenAuth = 'c2F0LWU4YzVmZmU0LWNmZGEtNDE2NS05ZDg5LWZmMWE2MGIzMDMxMToyaUNuT1NnWjNGUERHU1h1NzAwT1U0OV9EVWMyckRvZHBSRkJSV3R6OHlN';
-    const passwordResetFlowId = 'fe06359a-a5f4-4ffc-b762-b0844756887c';
+    const scopedAccessTokenAuth = 'c2F0LTNjZjg5ZDM5LWQ0ZjItNDZjZC1iYTlhLTM3YzQxMDg2ODg5NjpzV2ZjUVlWRlZ5anBNRmZyMExDSHRCRURTWGh2ZHJvNkdBNjYtT3dnZ1RF';
+    const passwordResetFlowId = 'f4187402-d6ba-4133-8c52-a2827302cc65';
     const tvClient = new TrueVaultClient({httpBasic: scopedAccessTokenAuth});
 
     const submitResetLink = async (event, email) => {

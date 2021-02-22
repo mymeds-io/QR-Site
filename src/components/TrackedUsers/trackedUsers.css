@@ -34,6 +34,10 @@
     font-weight: 600;
 }
 
+.searchInput {
+    border: solid grey .125rem;
+}
+
 .searchInput:focus{
     border-radius: 20px !important;
     outline: none !important;
