@@ -109,6 +109,29 @@ export default function SignInComponent() {
                                     Sign in to your account
                                 </h6>
                             </div>
+                            <div className="row justify-content-center no-gutters" style={{width:'100%'}}>
+                                <div className="col-11">
+                                    <GoogleLogin 
+                                        clientId={constant.googleClientId}
+                                        buttonText="Sign in with Google"
+                                        onSuccess={responseGoogle}
+                                        onFailure={responseGoogle}
+                                        cookiePolicy={'single_host_origin'}
+                                        className="googleBtn"
+                                    />
+                                </div>
+                            </div>
+                            <div className="row no-gutters justify-content-center" style={{width: '100%', color: '#c7c7c7', position: 'relative', bottom:'1.8%'}}>
+                                <div className="col-3" style={{display:'flex', justifyContent:'center', position:'relative', bottom:'1vh'}}>
+                                    ______
+                                </div>
+                                <div className="col-2" style={{textAlign: 'center'}}>
+                                    Or
+                                </div>
+                                <div className="col-3" style={{display:'flex', justifyContent:'center', position:'relative', bottom:'1vh'}}>
+                                    ______
+                                </div>
+                            </div>
                             <div className="row no-gutters justify-content-center" style={{width: "100%"}}>
                                 <div className="col-11">
                                     <form>
@@ -124,17 +147,9 @@ export default function SignInComponent() {
                                                 <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="/forgot-password">Forgot Your Password?</a></small>
                                             </div>
                                         </div>
-                                        <div>Or</div>
-                                        <GoogleLogin 
-                                            clientId={constant.googleClientId}
-                                            buttonText="Google Login"
-                                            onSuccess={responseGoogle}
-                                            onFailure={responseGoogle}
-                                            cookiePolicy={'single_host_origin'}
-                                        />
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
-                                                <button type="submit" onClick={(event) => submitValue(event, email, password, mfa) } className="signInSubmit btn btn-primary">Submit</button>
+                                                <button type="submit" onClick={(event) => submitValue(event, email, password, mfa) } className="signInSubmit btn btn-primary">Login</button>
                                             </div>
                                         </div>
                                     </form>
