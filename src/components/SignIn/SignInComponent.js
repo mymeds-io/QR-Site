@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { loginConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
+import GoogleLogin from 'react-google-login';
 import constant from '../../constants';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
@@ -80,6 +81,11 @@ export default function SignInComponent() {
         history.push("/user-meds")
     }
 
+    const responseGoogle = (response) => {
+        console.log('Google response: ', response)
+        console.log('Google profile: ', response.profileObj)
+    }
+
     useEffect(() => {
 
         console.log('Redux qr code: ', mfaQRCode)
@@ -118,6 +124,14 @@ export default function SignInComponent() {
                                                 <small id="emailHelp" style={{textAlign: "right"}} className="form-text text-muted"><a className="signInLink" href="/forgot-password">Forgot Your Password?</a></small>
                                             </div>
                                         </div>
+                                        <div>Or</div>
+                                        <GoogleLogin 
+                                            clientId={constant.googleClientId}
+                                            buttonText="Google Login"
+                                            onSuccess={responseGoogle}
+                                            onFailure={responseGoogle}
+                                            cookiePolicy={'single_host_origin'}
+                                        />
                                         <div className="row justify-content-center" style={{position: "relative", top: "2vh"}}>
                                             <div className="col-10">
                                                 <button type="submit" onClick={(event) => submitValue(event, email, password, mfa) } className="signInSubmit btn btn-primary">Submit</button>
