@@ -6,6 +6,7 @@ import axios from 'axios';
 import { loginConfig } from '../../functions/config';
 import TrueVaultClient from 'truevault';
 import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import constant from '../../constants';
 
 //Just remove onClick prop from submit button and delete code above return statement to obtain previous code
@@ -86,6 +87,10 @@ export default function SignInComponent() {
         console.log('Google profile: ', response.profileObj)
     }
 
+    const responseFacebook = (response) => {
+        console.log('Facebook response: ', response);
+    }
+
     useEffect(() => {
 
         console.log('Redux qr code: ', mfaQRCode)
@@ -101,7 +106,7 @@ export default function SignInComponent() {
                 <div className="col-8 col-md-4 col-lg-3">
                     <div className="signInContainer">
                         <div className="container-fluid" style={{display: "flex", justifyContent: "space-around", alignItems: "center", flexDirection: "column", height: "100%"}}>
-                            <div className="row no-gutters" style={{width: "100%"}}>
+                            <div className="row no-gutters" style={{width: "100%", position:'relative', top:'1%'}}>
                                 <h5 className="signInHeader col-12" style={{textAlign: "center"}}>
                                     Stay ahead with myMeds!
                                 </h5>
@@ -118,6 +123,17 @@ export default function SignInComponent() {
                                         onFailure={responseGoogle}
                                         cookiePolicy={'single_host_origin'}
                                         className="googleBtn"
+                                    />
+                                </div>
+                                <div className="col-11">
+                                    <FacebookLogin
+                                        appId="218989353297797"
+                                        autoLoad={true}
+                                        fields="name,email,picture"
+                                        callback={responseFacebook}
+                                        cssClass="facebookBtn"
+                                        icon="fa-facebook" 
+                                        textButton="Sign in with Facebook"
                                     />
                                 </div>
                             </div>
