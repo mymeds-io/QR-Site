@@ -1,8 +1,8 @@
 const apiKey = '1dd1de89-9af6-462a-a701-27b99410e495';
 const accountId = 'b47d8b19-1301-4050-a69b-255faada6c2c';
-const tvGroupDocId = `a13fdac5-b572-4518-b77d-1dcbc8a43471`;
-const mfaGroupId = '29414e15-65bc-40d0-855f-09e783e5716f';
-const adminApiKey = `d6982eee-d9cf-4888-b4a7-dbccd0fcdda8`;
+const tvGroupDocId = `c53210fe-1d0b-4fa3-bf63-dc239a7e5285`;
+const mfaGroupId = '25b7fc62-ca9a-42b4-a269-5eed558c002e';
+const adminApiKey = `d1bc2972-1213-41d7-99b0-1546fd06d24f`;
 const googleClientId = `839713748613-el644gr971bhfdmvvpn7cedaksk3c8ce.apps.googleusercontent.com`
 const facebookAppID = "218989353297797"
 
