@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import myMedsLogo from '../../images/myMedsLogo.png';
+import mmrLogo from '../../images/mmrLogo.png';
 import './navBar.css';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -56,13 +56,13 @@ export default function NavBarComponent() {
     return (
         <div className="navBarComponent">
             <div className="row no-gutters justify-content-between align-items-center" style={{padding: "1vh 0vw"}}>
-                <div className="col-2 col-md-2 col-lg-1" style={{position: "relative", left: "2vw"}}>
+                <div className="col-2 col-md-2 col-lg-2" style={{position: "relative", left: "2vw"}}>
                     {window.location.pathname.includes('/user-meds-qr/') ? 
                         <div className="returnBtn" onClick={() => returnToTrackedPts()}><i className="fa fa-arrow-left returnBtnIcon"></i><div className="returnBtnText">Return</div></div>
-                    : <img className="img-fluid" src={myMedsLogo} alt="myMedsLogo"/>
+                    : <img className="img-fluid" src={mmrLogo} alt="mmrLogo"/>
                     }
                 </div>
-                <div className="siteLinks col-7" style={{display: "flex", justifyContent: "center"}}>
+                <div className="siteLinks col-7 col-lg-6" style={{display: "flex", justifyContent: "center"}}>
                     <div>
                         <a className="siteLink" href="#">Home</a>
                         <a className="siteLink" href="#">Explore</a>
