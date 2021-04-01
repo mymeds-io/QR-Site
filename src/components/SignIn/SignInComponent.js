@@ -85,10 +85,16 @@ export default function SignInComponent() {
     const responseGoogle = (response) => {
         console.log('Google response: ', response)
         console.log('Google profile: ', response.profileObj)
+        //Sample Data to push for Demo purposes
+        dispatch({ type:"LOGIN_VIEW_USER", payload: { viewUserEmail: 'test3@gmail.com', viewUserAuth: 'Success', viewUserId: 3 } })
+        history.push('/tracked')
     }
 
     const responseFacebook = (response) => {
-        console.log('Facebook response: ', response);
+        console.log('Facebook response: ', response)
+        //Sample Data to push for Demo purposes
+        dispatch({ type:"LOGIN_VIEW_USER", payload: { viewUserEmail: 'test3@gmail.com', viewUserAuth: 'Success', viewUserId: 3 } })
+        history.push('/tracked')
     }
 
     useEffect(() => {
