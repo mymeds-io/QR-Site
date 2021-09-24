@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" component={HomeComponent} />
+          <Route exact path="/:userId?/:requestId?" component={HomeComponent} />
           <Route exact path="/sign-up" component={SignUpComponent} />
           <Route exact path="/mfa-enroll" component={MFAEnrollComponent} />
           <Route exact path="/user-meds" component={MedListComponent} />
